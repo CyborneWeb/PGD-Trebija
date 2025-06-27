@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
+import logo from "../assets/pgd-logo.svg"; // Direct path to the logo in public folder
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -18,16 +20,16 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white dark:bg-gray-900 shadow-md border-b-8 border-red-700">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-1 py-2">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-1 py-5">
         <div className="flex justify-between h-16">
           {/* Logo and brand */}
           <div className="flex items-center">
             {/* Logo image instead of SVG */}
             <div className="flex-shrink-0 mr-2">
               <img
-                src="/logo.png"
+                src={logo}
                 alt="PGD Trebija Logo"
-                className="h-8 w-auto"
+                className="h-17 w-auto dark:invert"
               />
             </div>
             <span className="text-black dark:text-white text-2xl font-bold">
@@ -45,7 +47,7 @@ const Navbar = () => {
                   className={({ isActive }) =>
                     `px-3 py-2 rounded-md text-lg font-medium ${
                       isActive
-                        ? "bg-gray-100 dark:bg-red-700 text-black dark:text-white"
+                        ? "bg-red-700  text-white dark:text-white"
                         : "text-black dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
                     }`
                   }
@@ -113,7 +115,7 @@ const Navbar = () => {
                 className={({ isActive }) =>
                   `block px-3 py-2 rounded-md text-base font-medium ${
                     isActive
-                      ? "bg-gray-100 dark:bg-gray-800 text-black dark:text-white"
+                      ? "bg-red-700  text-white"
                       : "text-black dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
                   }`
                 }
