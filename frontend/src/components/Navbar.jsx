@@ -19,7 +19,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-white dark:bg-gray-900 shadow-md border-b-8 border-red-700">
+    <nav className="bg-gray-200 dark:bg-gray-900 shadow-md border-b-8 border-red-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-1 py-5">
         <div className="flex justify-between h-16">
           {/* Logo and brand */}
