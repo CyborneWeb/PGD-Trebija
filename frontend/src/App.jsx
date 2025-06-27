@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import Navbar from "./components/Navbar";
+import Home from "./Pages/Home";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -11,7 +12,7 @@ function App() {
     <Router>
       <div className="min-h-screen">
         <Navbar />
-        <main className="container mx-auto px-4 py-8">
+        <main className="">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
@@ -26,7 +27,7 @@ function App() {
 }
 
 // Placeholder components for routes
-const Home = () => <h1 className="text-3xl font-bold">Home Page</h1>;
+
 const About = () => <h1 className="text-3xl font-bold">About Page</h1>;
 const Services = () => <h1 className="text-3xl font-bold">Services Page</h1>;
 const Gallery = () => <h1 className="text-3xl font-bold">Gallery Page</h1>;
