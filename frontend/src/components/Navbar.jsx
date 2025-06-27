@@ -11,16 +11,16 @@ const Navbar = () => {
   };
 
   const navItems = [
-    { title: "Home", path: "/" },
-    { title: "About", path: "/about" },
-    { title: "Services", path: "/services" },
-    { title: "Gallery", path: "/gallery" },
-    { title: "Contact", path: "/contact" },
+    { title: "Domov", path: "/" },
+    { title: "O Društvu", path: "/about" },
+    { title: "Obvestila", path: "/services" },
+    { title: "Galerija", path: "/gallery" },
+    { title: "Kontakt", path: "/contact" },
   ];
 
   return (
-    <nav className="bg-gray-200 dark:bg-gray-900 shadow-md border-b-8 border-red-700">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-1 py-5">
+    <nav className="bg-gray-200 dark:bg-gray-900 shadow-md border-b-8 border-red-700 px-5">
+      <div className="px-4 sm:px-6 lg:px-1 py-5">
         <div className="flex justify-between h-16">
           {/* Logo and brand */}
           <div className="flex items-center">
@@ -29,10 +29,10 @@ const Navbar = () => {
               <img
                 src={logo}
                 alt="PGD Trebija Logo"
-                className="h-17 w-auto dark:invert"
+                className="h-20 px-2 py-2 rounded-full bg-gray-100 shadow-md border-3 border-red-700 mr-2"
               />
             </div>
-            <span className="text-black dark:text-white text-2xl font-bold">
+            <span className="text-black dark:text-white text-4xl font-bold">
               PGD Trebija
             </span>
           </div>
