@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import logo from "../assets/pgd-logo.svg"; // Direct path to the logo in public folder
+import { FaHome, FaQuestionCircle, FaImages, FaEnvelope, FaBell} from "react-icons/fa";
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,11 +13,11 @@ const Navbar = () => {
   };
 
   const navItems = [
-    { title: "Domov", path: "/" },
-    { title: "O Društvu", path: "/about" },
-    { title: "Obvestila", path: "/services" },
-    { title: "Galerija", path: "/gallery" },
-    { title: "Kontakt", path: "/contact" },
+    { title: "Domov", path: "/", icon: <FaHome className="inline-block mr-2 mb-2" /> }, // Home icon
+    { title: "O Društvu", path: "/about", icon: <FaQuestionCircle className="inline-block mr-2 mb-2" /> }, // About icon
+    { title: "Obvestila", path: "/services", icon: <FaBell className="inline-block mr-2 mb-2" /> }, // Services icon
+    { title: "Galerija", path: "/gallery", icon: <FaImages className="inline-block mr-2 mb-2" /> }, // Gallery icon
+    { title: "Kontakt", path: "/contact", icon: <FaEnvelope className="inline-block mr-2 mb-2" /> }, // Contact icon
   ];
 
   return (
@@ -38,7 +40,7 @@ const Navbar = () => {
           </div>
 
           {/* Desktop navigation - aligned to the right */}
-          <div className="hidden md:flex md:items-center">
+          <div className="hidden lg:flex lg:items-center">
             <div className="flex space-x-4">
               {navItems.map((item) => (
                 <NavLink
@@ -52,6 +54,7 @@ const Navbar = () => {
                     }`
                   }
                 >
+                    {item.icon}
                   {item.title}
                 </NavLink>
               ))}
@@ -59,7 +62,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="flex items-center md:hidden">
+          <div className="flex items-center lg:hidden">
             <button
               onClick={toggleMenu}
               className="inline-flex items-center justify-center p-2 rounded-md text-black dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500"
@@ -106,14 +109,14 @@ const Navbar = () => {
 
       {/* Mobile menu, show/hide based on menu state */}
       {isOpen && (
-        <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <div className="lg:hidden">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
             {navItems.map((item) => (
               <NavLink
                 key={item.path}
                 to={item.path}
                 className={({ isActive }) =>
-                  `block px-3 py-2 rounded-md text-base font-medium ${
+                  `block px-3 py-2 rounded-md text-xl font-medium text-center w-60 ${
                     isActive
                       ? "bg-red-700  text-white"
                       : "text-black dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
@@ -121,6 +124,7 @@ const Navbar = () => {
                 }
                 onClick={() => setIsOpen(false)}
               >
+                {item.icon}
                 {item.title}
               </NavLink>
             ))}
