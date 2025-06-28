@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { motion } from "motion/react"
 
 import logo from "../assets/pgd-logo.svg"; // Direct path to the logo in public folder
 import { FaHome, FaQuestionCircle, FaImages, FaEnvelope, FaBell} from "react-icons/fa";
@@ -21,7 +22,17 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-gray-200 dark:bg-gray-900 shadow-md border-b-8 border-red-700 px-5">
+    <motion.nav 
+    className="bg-gray-200 dark:bg-gray-900 shadow-md border-b-8 border-red-700 px-5"
+          initial="hidden"
+      animate="visible"
+      transition={{ type: 'spring', stiffness: 70 }}
+      variants={{
+        hidden: { opacity: 0, y: -20 },
+        visible: { opacity: 1, y: 0 }
+      }}
+
+    >
       <div className="px-4 sm:px-6 lg:px-1 py-5">
         <div className="flex justify-between h-16">
           {/* Logo and brand */}
@@ -131,7 +142,7 @@ const Navbar = () => {
           </div>
         </div>
       )}
-    </nav>
+    </motion.nav>
   );
 };
 
