@@ -41,7 +41,7 @@ const NotifContainer = () => {
         >
           <FaBell className="text-red-600 dark:text-red-500 mr-2 text-2xl" />
           <h2 className="text-3xl font-bold text-gray-800 dark:text-white">
-            Zadnja obvestila
+            Aktualno
           </h2>
         </motion.div>
         <Link
