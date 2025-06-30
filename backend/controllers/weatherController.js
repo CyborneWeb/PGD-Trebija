@@ -26,12 +26,16 @@ const getWeather = async (req, res) => {
       current: response.data.current,
       forecast: response.data.forecast && response.data.forecast.forecastday,
       location: response.data.location,
+      
+      
     });
+    console.log(response.data)
   } catch (err) {
     console.error("Weather API Error:", err.response?.data || err.message);
     res.status(500).json({
       error: "Failed to fetch weather data",
       details: err.response?.data || err.message,
+
     });
   }
 };
