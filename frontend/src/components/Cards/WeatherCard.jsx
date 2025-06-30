@@ -1,6 +1,10 @@
 import React from "react";
 import { motion } from "motion/react";
-import { getWeatherIcon, isDayTime } from "../../../utils/weatherIcons";
+import {
+  getWeatherIcon,
+  isDayTime,
+  translateWeatherCondition,
+} from "../../../utils/weatherIcons";
 
 const WeatherCard = ({ data, isCurrentDay = false, location }) => {
   if (!data) return null;
@@ -26,13 +30,22 @@ const WeatherCard = ({ data, isCurrentDay = false, location }) => {
     ? current?.condition?.code
     : day?.condition?.code;
 
+  // Get and translate the condition text
+  const conditionText = isCurrentDay
+    ? translateWeatherCondition(current?.condition?.text)
+    : translateWeatherCondition(day?.condition?.text);
+
   const IconComponent = getWeatherIcon(weatherCode, isDay);
 
   return (
     <motion.div
       className={`${
-        isCurrentDay ? "bg-red-100 dark:bg-red-900/30" : "bg-gray-50 dark:bg-gray-800"
-      } rounded-lg shadow-lg border ${isCurrentDay ? "border-red-200" : "border-gray-200"} dark:border-transparent overflow-hidden`}
+        isCurrentDay
+          ? "bg-red-100 dark:bg-red-900/30"
+          : "bg-gray-50 dark:bg-gray-800"
+      } rounded-lg shadow-lg border ${
+        isCurrentDay ? "border-red-200" : "border-gray-200"
+      } dark:border-transparent overflow-hidden`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
@@ -40,12 +53,16 @@ const WeatherCard = ({ data, isCurrentDay = false, location }) => {
     >
       <div className="p-5">
         <div className="flex justify-between items-center mb-3">
-          <h3 className={`text-lg font-bold ${isCurrentDay ? "text-red-800" : "text-gray-800"} dark:text-white`}>
+          <h3
+            className={`text-lg font-bold ${
+              isCurrentDay ? "text-red-800" : "text-gray-800"
+            } dark:text-white`}
+          >
             {formatDate(data.date)}
           </h3>
           {location && isCurrentDay && (
             <span className="text-sm text-gray-500 dark:text-gray-400">
-                Trebija
+              Trebija
             </span>
           )}
         </div>
@@ -55,7 +72,7 @@ const WeatherCard = ({ data, isCurrentDay = false, location }) => {
             <IconComponent className="text-5xl mr-3 text-red-500" />
             <div>
               <p className="text-sm text-gray-600 dark:text-gray-300">
-                {isCurrentDay ? current?.condition?.text : day?.condition?.text}
+                {conditionText}
               </p>
               {isCurrentDay && (
                 <p className="text-3xl font-bold text-gray-800 dark:text-white">
