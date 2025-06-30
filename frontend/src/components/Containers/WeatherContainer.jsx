@@ -62,15 +62,25 @@ const WeatherContainer = () => {
   return (
     <div className="w-full p-4 md:p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md mb-8">
       <motion.div
-        className="flex items-center mb-6 gap-3 border-b border-gray-200 dark:border-gray-700 pb-4"
+        className="flex items-center justify-between mb-6 gap-3 border-b border-gray-200 dark:border-gray-700 pb-4 flex-col md:flex-row"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <WiThermometer className="text-red-600 dark:text-red-500 text-3xl" />
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
-          Vremenska napoved
-        </h2>
+        <div className="flex items-center gap-3">
+          <WiThermometer className="text-red-600 dark:text-red-500 text-3xl" />
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
+            Vremenska napoved
+          </h2>
+        </div>
+        <motion.span
+          className="text-sm italic text-gray-600 dark:text-gray-400"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          Naj vas nepričakovani vremenski pojavi ne presenetijo
+        </motion.span>
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -90,9 +100,17 @@ const WeatherContainer = () => {
           <WeatherCard key={day.date} data={day} />
         ))}
       </div>
-      
+
       <div className="text-xs text-gray-500 dark:text-gray-400 mt-4 text-center">
-        Vremenski podatki pridobljeni preko <a href="https://www.weatherapi.com" target="_blank" rel="noopener noreferrer" className="hover:underline text-red-500 dark:text-red-400">WeatherAPI</a>
+        Vremenski podatki pridobljeni preko{" "}
+        <a
+          href="https://www.weatherapi.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:underline text-red-500 dark:text-red-400"
+        >
+          WeatherAPI
+        </a>
       </div>
     </div>
   );
