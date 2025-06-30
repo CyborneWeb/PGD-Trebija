@@ -16,6 +16,7 @@ const getWeather = async (req, res) => {
           key: apiKey,
           q: `${lat},${lon}`,
           days: 4,
+          lang: "sl", // Slovenian language
         },
       }
     );
