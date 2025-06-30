@@ -1,7 +1,7 @@
 import React from "react";
-import Hero from "../components/Hero";
-import NotifContainer from "../components/NotifContainer";
-import Donate from "../components/Donate";
+import Hero from "../components/HomePage/Hero";
+import NotifContainer from "../components/Containers/NotifContainer";
+import Donate from "../components/HomePage/Donate";
 import WeatherContainer from "../components/Containers/WeatherContainer";
 
 const Home = () => {
@@ -11,7 +11,6 @@ const Home = () => {
       <div className="">
         <WeatherContainer />
         <NotifContainer />
-        
       </div>
       <Donate />
     </>
