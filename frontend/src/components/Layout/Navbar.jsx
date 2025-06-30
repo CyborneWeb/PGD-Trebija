@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { motion } from "motion/react";
 
-import logo from "../assets/pgd-logo.svg"; // Direct path to the logo in public folder
+import logo from "../../assets/pgd-logo.svg"; // Direct path to the logo in public folder
 import {
   FaHome,
   FaQuestionCircle,

@@ -1,5 +1,5 @@
 import React from "react";
-import placeholder from "../assets/placeholder.png"; // Adjust the path as necessary
+import placeholder from "../../assets/placeholder.png"; // Adjust the path as necessary
 import { motion, useInView } from "motion/react";
 
 const NotifCard = ({ image, content, title }) => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { FaBell, FaArrowRight } from "react-icons/fa";
-import NotifCard from "./NotifCard";
+import NotifCard from "../Cards/NotifCard";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react"; // Ensure you have motion installed if you're using it
 
