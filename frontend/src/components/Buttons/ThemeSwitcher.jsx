@@ -1,5 +1,5 @@
 import React from "react";
-import { useTheme } from "../Contexts/ThemeContext";
+import { useTheme } from "../../Contexts/ThemeContext";
 import { FaSun, FaMoon } from "react-icons/fa";
 import { motion } from "motion/react";
 
