@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
+import ThemeSwitcher from "../../assets/Buttons/ThemeSwitcher";
 
 import logo from "../../assets/pgd-logo.svg"; // Direct path to the logo in public folder
 import {
@@ -76,7 +77,7 @@ const Navbar = () => {
 
           {/* Desktop navigation - aligned to the right */}
           <div className="hidden lg:flex lg:items-center">
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 items-center">
               {navItems.map((item, index) => (
                 <motion.div
                   key={item.path}
@@ -103,11 +104,25 @@ const Navbar = () => {
                   </NavLink>
                 </motion.div>
               ))}
+
+              {/* Theme Switcher Button */}
+              <motion.div
+                initial={{ opacity: 0, y: -500 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.3,
+                  delay: 0.3 + navItems.length * 0.1,
+                  ease: "easeOut",
+                }}
+              >
+                <ThemeSwitcher className="ml-2" />
+              </motion.div>
             </div>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile menu button and theme switcher */}
           <div className="flex items-center lg:hidden">
+            <ThemeSwitcher className="mr-2" />
             <button
               onClick={toggleMenu}
               className="inline-flex items-center justify-center p-2 rounded-md text-black dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500"
