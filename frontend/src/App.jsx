@@ -1,18 +1,19 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import Navbar from "./components/Layout/Navbar";
 import Footer from "./components/Layout/Footer";
 import Home from "./Pages/Home";
 
+
 function App() {
-  const [count, setCount] = useState(0);
+  
 
   return (
     <Router>
       <div className="min-h-screen flex flex-col">
         <Navbar />
+        
+
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
