@@ -26,7 +26,7 @@ const Donate = () => {
       animate={{ opacity: shouldAnimate ? 1 : 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <div className="px-4 mx-auto max-w-screen-xl text-center py-16 lg:py-24 mb-12 lg:mb-20">
+      <div className="px-4 mx-auto max-w-screen-xl text-center py-16 lg:py-24 mb-0 lg:mb-0">
         {/* Original Donate component content with animations */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
