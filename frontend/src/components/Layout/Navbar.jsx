@@ -49,7 +49,7 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className="bg-gray-200 dark:bg-gray-900 shadow-md border-b-8 border-red-700 px-5 sticky top-0 z-50"
+      className="bg-gray-200 dark:bg-gray-900 shadow-md border-b-8 border-red-700 px-2 sticky top-0 z-50 lg:px-5"
       initial="hidden"
       animate="visible"
       transition={{ type: "spring", stiffness: 70 }}
@@ -58,7 +58,7 @@ const Navbar = () => {
         visible: { opacity: 1, y: 0 },
       }}
     >
-      <div className="px-4 sm:px-6 lg:px-1 py-5">
+      <div className="px-1 sm:px-6 lg:px-1 py-5">
         <div className="flex justify-between h-16">
           {/* Logo and brand */}
           <div className="flex items-center">
@@ -67,10 +67,10 @@ const Navbar = () => {
               <img
                 src={logo} // Direct reference to public folder
                 alt="PGD Trebija Logo"
-                className="h-20 px-2 py-2 rounded-full bg-gray-100 shadow-md border-3 border-red-700 mr-2"
+                className="h-15 px-2 py-2 rounded-full bg-gray-100 shadow-md border-3 border-red-700 mr-2 lg:h-20"
               />
             </div>
-            <span className="text-black dark:text-white text-4xl font-bold ">
+            <span className="text-black dark:text-white text-2xl font-bold lg:text-3xl">
               PGD Trebija
             </span>
           </div>
@@ -121,7 +121,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile menu button and theme switcher */}
-          <div className="flex items-center lg:hidden">
+          <div className="flex items-center lg:hidden ">
             <ThemeSwitcher className="mr-2" />
             <button
               onClick={toggleMenu}
@@ -168,8 +168,8 @@ const Navbar = () => {
 
         {/* Mobile menu, show/hide based on menu state */}
         {isOpen && (
-          <div className="lg:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
+          <div className="lg:hidden ">
+            <div className="px-2 pt-7 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
               {navItems.map((item, index) => (
                 <motion.div
                   key={item.path}
