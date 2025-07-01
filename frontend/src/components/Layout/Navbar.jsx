@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
-import ThemeSwitcher from "../../assets/Buttons/ThemeSwitcher";
+import ThemeSwitcher from "../Buttons/ThemeSwitcher";
 
 import logo from "../../assets/pgd-logo.svg"; // Direct path to the logo in public folder
 import {
