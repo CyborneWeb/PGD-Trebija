@@ -3,16 +3,15 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Layout/Navbar";
 import Footer from "./components/Layout/Footer";
 import Home from "./Pages/Home";
-
+import BackToTop from "./components/Buttons/BackToTop";
 
 function App() {
-  
+ 
 
   return (
     <Router>
       <div className="min-h-screen flex flex-col">
         <Navbar />
-        
 
         <main className="flex-grow">
           <Routes>
@@ -23,6 +22,8 @@ function App() {
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
+        <BackToTop />
+
         <Footer />
       </div>
     </Router>
