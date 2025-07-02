@@ -105,7 +105,7 @@ const WeatherCard = ({ data, isCurrentDay = false, location }) => {
         </div>
 
         {!isCurrentDay && (
-          <div className="mt-3 text-sm text-gray-600 dark:text-gray-300">
+          <div className="mt-3 text-sm weather-text">
             <p>Padavine: {day?.totalprecip_mm} mm</p>
             <p>Veter: {day?.maxwind_kph} km/h</p>
           </div>
