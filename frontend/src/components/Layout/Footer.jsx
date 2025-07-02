@@ -34,7 +34,10 @@ const Footer = () => {
   };
 
   return (
-    <footer ref={footerRef} className="bg-gray-950/80 text-white pt-12 pb-6">
+    <motion.footer 
+    ref={footerRef} 
+    className="bg-gray-950/80 text-white pt-12 pb-6 border-t-5 border-red-800"
+    >
       <div className="container mx-auto px-4">
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
@@ -239,7 +242,7 @@ const Footer = () => {
           </p>
         </motion.div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 
