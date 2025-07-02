@@ -1,18 +1,28 @@
-import React from "react";
-import placeholder from "../../assets/placeholder.png"; // Adjust the path as necessary
-import { motion, useInView } from "motion/react";
+import React, { useRef } from "react";
+import placeholder from "../../assets/placeholder.png";
+import { motion, useInView } from "framer-motion";
 
-const NotifCard = ({ image, content, title }) => {
+const NotifCard = ({ image, content, title, index = 0, isContainerInView }) => {
+  const cardRef = useRef(null);
+  const isInView = useInView(cardRef, { once: true, amount: 0.2 });
+
+  // Card should animate when either itself or its container comes into view
+  const shouldAnimate = isInView && isContainerInView;
+
+  // Calculate delay based on card index
+  const animationDelay = 0.2 + index * 0.1;
+
   return (
-    <motion.div 
-    className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 h-full flex flex-col"
-    initial={{ opacity: 0, y: -50 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ type: "spring", stiffness: 70 }}
-    variants={{
-      hidden: { opacity: 0, y: -20 },
-      visible: { opacity: 1, y: 0 },
-    }}
+    <motion.div
+      ref={cardRef}
+      className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 h-full flex flex-col"
+      initial={{ opacity: 0, y: 50 }}
+      animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      transition={{
+        type: "spring",
+        stiffness: 70,
+        delay: animationDelay,
+      }}
     >
       <a href="#">
         <img
