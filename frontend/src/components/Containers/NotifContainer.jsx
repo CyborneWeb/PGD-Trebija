@@ -13,23 +13,21 @@ const NotifContainer = () => {
   const notifications = [
     {
       id: 1,
-      title: "Vaja s hidrantnim omrežjem",
-      content:
-        "V soboto, 15. junija, bo potekala vaja s hidrantnim omrežjem. Vsi člani društva vabljeni k udeležbi.",
+      title: "Test Obvestilo 1",
+
       image: null,
     },
     {
       id: 2,
-      title: "Nova gasilska oprema",
-      content:
-        "Obveščamo vas, da smo prejeli novo gasilsko opremo. Predstavitev bo v nedeljo ob 17.00.",
+      title: "Test Obvestilo 2",
+      
+        
       image: null,
     },
     {
       id: 3,
-      title: "Preventivni pregledi gasilnikov",
-      content:
-        "Obveščamo občane, da bodo v naslednjih dneh potekali preventivni pregledi gasilnikov po gospodinjstvih.",
+      title: "Test Obvestilo 3",
+
       image: null,
     },
   ];
