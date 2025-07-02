@@ -27,22 +27,22 @@ const Navbar = () => {
     }, // Home icon
     {
       title: "O Društvu",
-      path: "/about",
+      path: "/drustvo",
       icon: <FaQuestionCircle className="inline-block mr-2 mb-2 theme-icon" />,
     }, // About icon
     {
       title: "Obvestila",
-      path: "/services",
+      path: "/obvestila",
       icon: <FaBell className="inline-block mr-2 mb-2 theme-icon" />,
     }, // Services icon
     {
       title: "Galerija",
-      path: "/gallery",
+      path: "/galerija",
       icon: <FaImages className="inline-block mr-2 mb-2 theme-icon" />,
     }, // Gallery icon
     {
       title: "Kontakt",
-      path: "/contact",
+      path: "/kontakt",
       icon: <FaEnvelope className="inline-block mr-2 mb-2 theme-icon" />,
     }, // Contact icon
   ];
