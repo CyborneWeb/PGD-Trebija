@@ -49,13 +49,16 @@ const Footer = () => {
             transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
           >
             <motion.h3
-              className="text-xl font-bold mb-4 text-red-500 border-b border-red-500 pb-2"
-              initial={{ width: "0%" }}
-              animate={isInView ? { width: "100%" } : { width: "0%" }}
-              transition={{ duration: 1.0, delay: 0.8 }}
+              className="text-xl font-bold  text-red-500 "
             >
               Podatki o društvu
             </motion.h3>
+            <motion.p
+              className="border-b border-red-500 pb-2 mb-4 text-gray-400"
+              initial={{ width: "0%" }}
+              animate={isInView ? { width: "100%" } : { width: "0%" }}
+              transition={{ duration: 1.0, delay: 1.0 }}
+            ></motion.p>
 
             <motion.ul
               className="space-y-3"
@@ -69,7 +72,7 @@ const Footer = () => {
                   href="mailto:pgd.trebija@gmail.com"
                   className="hover:text-red-400 transition-colors"
                 >
-                  pgd.trebija@gmail.com
+                  pgdtrebija@gmail.com
                 </a>
               </motion.li>
               <motion.li className="flex items-center" variants={itemVariants}>
@@ -78,14 +81,14 @@ const Footer = () => {
                   href="tel:+38631356849"
                   className="hover:text-red-400 transition-colors"
                 >
-                  +386 31 356 849
+                  +386 51 327 888
                 </a>
               </motion.li>
               <motion.li className="flex items-start" variants={itemVariants}>
                 <FaMapMarkerAlt className="mr-3 text-red-500 mt-1" />
                 <div>
-                  <p>Trebija 45</p>
-                  <p>4224 Gorenja vas</p>
+                  <p>Trebija 4, 4224 Gorenja vas</p>
+                  
                 </div>
               </motion.li>
             </motion.ul>
@@ -97,14 +100,15 @@ const Footer = () => {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
           >
-            <motion.h3
-              className="text-xl font-bold mb-4 text-red-500 border-b border-red-500 pb-2"
+            <motion.h3 className="text-xl font-bold  text-red-500">
+              Povezave
+            </motion.h3>
+            <motion.p
+              className="border-b border-red-500 pb-2 mb-4 text-gray-400"
               initial={{ width: "0%" }}
               animate={isInView ? { width: "100%" } : { width: "0%" }}
               transition={{ duration: 1.0, delay: 1.0 }}
-            >
-              Povezave
-            </motion.h3>
+            ></motion.p>
 
             <motion.ul
               className="space-y-3"
@@ -114,7 +118,7 @@ const Footer = () => {
             >
               <motion.li variants={itemVariants}>
                 <a
-                  href="https://spin3.sos112.si/login"
+                  href="https://spin3.sos112.si/javno/pregled"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center hover:text-red-400 transition-colors"
@@ -125,7 +129,7 @@ const Footer = () => {
               </motion.li>
               <motion.li variants={itemVariants}>
                 <a
-                  href="https://www.gzskofjaloka.si/"
+                  href="https://www.gz-skofjaloka.si"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center hover:text-red-400 transition-colors"
@@ -198,7 +202,7 @@ const Footer = () => {
               </motion.a>
 
               <motion.a
-                href="https://www.instagram.com/pgdtrebija"
+                href="https://www.instagram.com/gasilcitrebija/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-red-600 p-3 rounded-full hover:bg-red-700 transition-colors"
