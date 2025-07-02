@@ -17,10 +17,51 @@ svg, svg path {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Add to index.css */
+.dark .theme-icon svg, .dark .theme-icon svg path,
+.dark svg.theme-icon, .dark svg.theme-icon path {
+  color: white !important;
+  fill: currentColor !important;
+}
+
+.theme-icon svg, .theme-icon svg path,
+svg.theme-icon, svg.theme-icon path {
+  color: black !important;
+  fill: currentColor !important;
+}
+
+.bg-red-700 .theme-icon svg,
+.bg-red-700 .theme-icon svg path,
+.bg-red-700 svg.theme-icon,
+.bg-red-700 svg.theme-icon path,
+.bg-red-700 .custom-color-icon svg,
+.bg-red-700 svg.custom-color-icon {
+  color: white !important;
+  fill: white !important;
+}
+
+/* Custom colored icons will remain their set color */
+.custom-color-icon svg, svg.custom-color-icon {
+  /* No color overrides here, just keep their own styling */
+}
+
 body{
   @apply bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100;
 }
 
 html {
   @apply scroll-smooth;
+}
+
+.weather-text {
+  transition-duration: 0ms !important;
+  color: var(--weather-text-color) !important;
+}
+
+:root {
+  --weather-text-color: #4B5563; /* text-gray-600 */
+}
+
+.dark {
+  --weather-text-color: #D1D5DB; /* text-gray-300 */
 }
