@@ -23,27 +23,27 @@ const Navbar = () => {
     {
       title: "Domov",
       path: "/",
-      icon: <FaHome className="inline-block mr-2 mb-2" />,
+      icon: <FaHome className="inline-block mr-2 mb-2 theme-icon" />,
     }, // Home icon
     {
       title: "O Društvu",
       path: "/about",
-      icon: <FaQuestionCircle className="inline-block mr-2 mb-2" />,
+      icon: <FaQuestionCircle className="inline-block mr-2 mb-2 theme-icon" />,
     }, // About icon
     {
       title: "Obvestila",
       path: "/services",
-      icon: <FaBell className="inline-block mr-2 mb-2" />,
+      icon: <FaBell className="inline-block mr-2 mb-2 theme-icon" />,
     }, // Services icon
     {
       title: "Galerija",
       path: "/gallery",
-      icon: <FaImages className="inline-block mr-2 mb-2" />,
+      icon: <FaImages className="inline-block mr-2 mb-2 theme-icon" />,
     }, // Gallery icon
     {
       title: "Kontakt",
       path: "/contact",
-      icon: <FaEnvelope className="inline-block mr-2 mb-2" />,
+      icon: <FaEnvelope className="inline-block mr-2 mb-2 theme-icon" />,
     }, // Contact icon
   ];
 
@@ -94,9 +94,9 @@ const Navbar = () => {
                     className={({ isActive }) =>
                       `px-3 py-2 rounded-md text-lg font-medium ${
                         isActive
-                          ? "bg-red-700 text-white dark:text-white"
+                          ? "bg-red-700 text-white"
                           : "text-black dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
-                      }`
+                      } transition-all`
                     }
                   >
                     {item.icon}
