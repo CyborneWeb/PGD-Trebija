@@ -11,8 +11,8 @@ const ThemeSwitcher = ({ className = "" }) => {
       onClick={toggleTheme}
       className={`w-10 h-10 rounded-full flex items-center justify-center shadow-md ${
         theme === "light"
-          ? "bg-gray-200 text-gray-800 hover:bg-gray-300"
-          : "bg-gray-700 text-yellow-200 hover:bg-gray-600"
+          ? "bg-gray-200 text-red-500 hover:bg-gray-300"
+          : "bg-gray-700 text-red-500 hover:bg-gray-600"
       } ${className}`}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
