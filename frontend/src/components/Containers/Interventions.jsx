@@ -99,9 +99,9 @@ const Interventions = () => {
         transition={{ duration: 0.6 }}
         className="max-w-6xl mx-auto"
       >
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-red-600 dark:text-red-500 flex items-center justify-center gap-3">
-          <FaTruck className="text-2xl md:text-3xl" />
-          <span>Število intervencij</span>
+        <h2 className="text-3xl md:text-4xl  font-bold lg:text-center mb-8 text-red-600 dark:text-red-500 flex items-center justify-center gap-3">
+          <FaTruck className="text-8xl md:text-3xl" />
+          <span className="ml-4">Število zabeleženih intervencij</span>
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
@@ -138,7 +138,7 @@ const Interventions = () => {
               </h3>
             </div>
             <div className="text-5xl md:text-6xl font-bold text-center py-6 text-red-600 dark:text-red-500">
-              {allTimeDisplayCount}
+              {allTimeDisplayCount}+ 
             </div>
             <p className="text-gray-600 dark:text-gray-400 text-center">
               vseh intervencij skupaj
