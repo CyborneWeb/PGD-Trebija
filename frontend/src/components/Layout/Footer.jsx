@@ -237,8 +237,10 @@ const Footer = () => {
           transition={{ duration: 0.8, delay: 2.0 }}
         >
           <p>&copy; {currentYear} PGD Trebija. Vse pravice pridržane.</p>
+
+          { /* Temporary link to GitHub account, will change it to link to portfolio when i have it */ }
           <p className="mt-1">
-            Izdelava: <span className="text-red-500">Matic Štucin</span>
+            Izdelava: <a href="https://github.com/CyborneWeb"><span className="text-red-500">Matic Štucin</span></a>
           </p>
         </motion.div>
       </div>
