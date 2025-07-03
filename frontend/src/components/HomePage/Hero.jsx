@@ -54,10 +54,10 @@ const Hero = () => {
 
         <motion.p
           className="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48"
-          initial={{ opacity: 0, x: -100 }}
+          initial={{ opacity: 0, y: 100 }}
           animate={{
             opacity: shouldAnimate ? 1 : 0,
-            x: shouldAnimate ? 0 : -100,
+            y: shouldAnimate ? 0 : 100,
           }}
           transition={{
             duration: 1.2,
