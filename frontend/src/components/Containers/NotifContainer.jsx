@@ -20,14 +20,20 @@ const NotifContainer = () => {
     {
       id: 2,
       title: "Test Obvestilo 2",
-      
-        
+
       image: null,
     },
     {
       id: 3,
       title: "Test Obvestilo 3",
 
+      image: null,
+    },
+    {
+      id: 4,
+      title: "Test Obvestilo 4",
+      content:
+        "To je novo testno obvestilo z vzorčno vsebino. Prikazuje primer dodatnega obvestila na spletni strani.",
       image: null,
     },
   ];
@@ -64,7 +70,7 @@ const NotifContainer = () => {
         </motion.div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center py-4 px-2 my-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4  gap-4 sm:gap-6 lg:gap-8 justify-items-center py-4 px-2 my-6">
         {notifications.map((notif, index) => (
           <NotifCard
             key={notif.id}
