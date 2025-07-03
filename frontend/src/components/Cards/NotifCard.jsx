@@ -15,7 +15,7 @@ const NotifCard = ({ image, content, title, index = 0, isContainerInView }) => {
   return (
     <motion.div
       ref={cardRef}
-      className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 h-full flex flex-col"
+      className="max-w-full w-full bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 h-full flex flex-col"
       initial={{ opacity: 0, y: 50 }}
       animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{
@@ -26,18 +26,18 @@ const NotifCard = ({ image, content, title, index = 0, isContainerInView }) => {
     >
       <a href="#">
         <img
-          className="rounded-t-lg w-[100%] h-70 object-cover"
+          className="rounded-t-lg w-full h-48 object-cover"
           src={image || placeholder}
           alt=""
         />
       </a>
-      <div className="p-5 flex flex-col flex-grow">
+      <div className="p-3 sm:p-5 flex flex-col flex-grow">
         <a href="#">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 className="mb-2 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {title || "Obvestilo"}
           </h5>
         </a>
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 flex-grow">
+        <p className="mb-3 font-normal text-sm sm:text-base text-gray-700 dark:text-gray-400 flex-grow">
           {content ||
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}
         </p>
@@ -55,9 +55,9 @@ const NotifCard = ({ image, content, title, index = 0, isContainerInView }) => {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="M1 5h12m0 0L9 1m4 4L9 9"
             />
           </svg>
