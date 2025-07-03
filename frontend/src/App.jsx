@@ -5,6 +5,7 @@ import Footer from "./components/Layout/Footer";
 import Home from "./Pages/Home";
 import BackToTop from "./components/Buttons/BackToTop";
 import CookieModal from "./components/Modals/CookieModal";
+import Contact from "./Pages/Contact";
 
 
 function App() {
@@ -38,6 +39,6 @@ function App() {
 const About = () => <h1 className="text-3xl font-bold">O Društvu - izdelava še poteka</h1>;
 const Posts = () => <h1 className="text-3xl font-bold">Obvestila - izdelava še poteka</h1>;
 const Gallery = () => <h1 className="text-3xl font-bold">Galerija - izdelava še poteka</h1>;
-const Contact = () => <h1 className="text-3xl font-bold">Kontakt - izdelava še poteka</h1>;
+
 
 export default App;
