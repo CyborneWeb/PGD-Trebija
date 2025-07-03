@@ -91,37 +91,25 @@ const Interventions = () => {
   return (
     <div
       ref={ref}
-      className="w-full px-4 py-8 md:py-12 lg:py-16 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900"
+      className="w-full px-4 py-8 md:py-12 lg:py-16 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 overflow-hidden"
     >
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-        transition={{ duration: 0.6 }}
-        className="mx-auto"
+        initial={{ opacity: 0, y: 10 }} // Reduced y-offset from 20 to 10
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+        transition={{ duration: 0.5 }} // Slightly faster animation
+        className="mx-auto max-w-full" // Added max-width constraint
       >
-        <div className="flex items-center justify-center gap-4 mb-8">
-          <motion.div
-            initial={{ width: 0 }}
-            animate={isInView ? { width: "30%" } : { width: 0 }}
-            transition={{ duration: 1.2, delay: 0.3 }}
-            className="h-[2px] bg-red-600 dark:bg-red-500"
-          />
-          <h2 className="text-3xl md:text-4xl font-bold text-red-600 dark:text-red-500 flex items-center justify-center gap-3 whitespace-nowrap">
-            <FaTruck className="text-8xl md:text-3xl" />
-            <span className="ml-4">Število zabeleženih intervencij</span>
+        <div className="flex flex-col items-center justify-center gap-2 mb-8">
+          <h2 className="text-2xl md:text-4xl font-bold text-red-600 dark:text-red-500 flex flex-col md:flex-row items-center justify-center gap-3 text-center">
+            <FaTruck className="text-4xl md:text-3xl mb-2 md:mb-0" />
+            <span>Število zabeleženih intervencij</span>
           </h2>
-          <motion.div
-            initial={{ width: 0 }}
-            animate={isInView ? { width: "30%" } : { width: 0 }}
-            transition={{ duration: 1.2, delay: 0.3 }}
-            className="h-[2px] bg-red-600 dark:bg-red-500"
-          />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 mx-auto max-w-4xl">
           {/* Current Year Counter */}
           <motion.div
-            whileHover={{ scale: 1.03 }}
+            whileHover={{ scale: 1.02 }} // Reduced scale effect
             transition={{ type: "spring", stiffness: 300 }}
             className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 md:p-8 border border-gray-200 dark:border-gray-700
             max-w-xl"
@@ -142,7 +130,7 @@ const Interventions = () => {
 
           {/* All-time Counter */}
           <motion.div
-            whileHover={{ scale: 1.03 }}
+            whileHover={{ scale: 1.02 }} // Reduced scale effect
             transition={{ type: "spring", stiffness: 300 }}
             className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 md:p-8 border border-gray-200 dark:border-gray-700 max-w-xl"
           >
