@@ -98,11 +98,11 @@ const Donate = () => {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, x: -50 }}
+            initial={{ opacity: 0, scale: 0.9, y: -50 }}
             animate={{
               opacity: shouldAnimate ? 1 : 0,
               scale: shouldAnimate ? 1 : 0.9,
-              x: shouldAnimate ? 0 : -50,
+              y: shouldAnimate ? 0 : -50,
             }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 1.0 }}
             whileHover={{ scale: 1.08, transition: { duration: 0.3 } }}
@@ -115,11 +115,11 @@ const Donate = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, x: 50 }}
+            initial={{ opacity: 0, scale: 0.9, y: 50 }}
             animate={{
               opacity: shouldAnimate ? 1 : 0,
               scale: shouldAnimate ? 1 : 0.9,
-              x: shouldAnimate ? 0 : 50,
+              y: shouldAnimate ? 0 : 50,
             }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 1.2 }}
             whileHover={{ scale: 1.08, transition: { duration: 0.3 } }}
