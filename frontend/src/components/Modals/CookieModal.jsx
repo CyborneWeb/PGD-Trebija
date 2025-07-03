@@ -28,11 +28,11 @@ const CookieModal = () => {
   };
 
   // If not visible, don't render anything
-  if (isVisible) return null;
+  if (!isVisible) return null;
 
   return (
     <AnimatePresence>
-      {!isVisible && (
+      {isVisible && (
         <>
           {/* Dimmed background overlay */}
           <motion.div
