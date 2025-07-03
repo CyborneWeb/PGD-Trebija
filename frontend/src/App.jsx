@@ -4,7 +4,7 @@ import Navbar from "./components/Layout/Navbar";
 import Footer from "./components/Layout/Footer";
 import Home from "./Pages/Home";
 import BackToTop from "./components/Buttons/BackToTop";
-import CookieModal from "./components/Modals/CookieModal";
+
 
 function App() {
  
@@ -24,7 +24,7 @@ function App() {
           </Routes>
         </main>
         <BackToTop />
-        <CookieModal />
+        
 
         <Footer />
       </div>
