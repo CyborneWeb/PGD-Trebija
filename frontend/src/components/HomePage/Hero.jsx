@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { LuArrowRight } from "react-icons/lu";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 
+
 const Hero = () => {
   const ref = useRef(null);
   // Changed once to true so animation only happens on first view
@@ -22,7 +23,7 @@ const Hero = () => {
   return (
     <motion.section
       ref={ref}
-      className="bg-bottom bg-no-repeat bg-cover bg-[url('https://scontent-vie1-1.xx.fbcdn.net/v/t39.30808-6/460417385_924052116423761_8712443502836007538_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=pyryHXVRXMcQ7kNvwHvdrj7&_nc_oc=AdkML9cQ89sRUbCl8p65dtlUOgyuzhpSzEHm7rqfkg4Z2Tr9mRx8xg7VP8s-cpYJ5wo&_nc_zt=23&_nc_ht=scontent-vie1-1.xx&_nc_gid=siBuRfR_NytO39t3YECjIQ&oh=00_AfM0PekO50HEjlh2BvFG2MtlAtm5xTbufZ4uJ2j5FfiJbQ&oe=6864A250')] bg-gray-700 bg-blend-multiply"
+      className="bg-bottom bg-no-repeat bg-cover bg-[url(/src/assets/hero.jpg)] bg-gray-700 bg-blend-multiply"
       initial={{ opacity: 0 }}
       animate={{ opacity: shouldAnimate ? 1 : 0 }}
       transition={{ duration: 1.2, ease: "easeOut" }} // Longer duration
