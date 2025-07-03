@@ -40,8 +40,8 @@ const NotifContainer = () => {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-3 border-b border-gray-200 dark:border-gray-700 pb-4">
         <motion.div
           className="flex items-center"
-          initial={{ opacity: 0, x: -100 }}
-          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
+          initial={{ opacity: 0, y: -100 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -100 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
           <FaBell className="text-red-600 dark:text-red-500 mr-2 text-2xl" />
@@ -50,8 +50,8 @@ const NotifContainer = () => {
           </h2>
         </motion.div>
         <motion.div
-          initial={{ opacity: 0, x: 100 }}
-          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 100 }}
+          initial={{ opacity: 0, y: 100 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
         >
           <Link
