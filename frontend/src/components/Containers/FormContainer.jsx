@@ -1,29 +1,32 @@
 import React, { useState, useRef, useEffect } from "react";
 import FormInput from "../Inputs/FormInput";
 import { FaUser, FaEnvelope, FaComment, FaHeading } from "react-icons/fa";
-import {
-  handleFormChange,
-  handleFormBlur,
-  handleFormSubmit,
-} from "../../../utils/helper";
+import { handleFormChange, handleFormBlur } from "../../../utils/helper";
+import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 
+// EmailJS configuration constants
+const SERVICE_ID = "service_yyoecrd";
+const TEMPLATE_ID = "template_4s92u41";
+const PUBLIC_KEY = "DVkILSWGzPajFPmqq";
+
 const FormContainer = ({
-  initialValues = { name: "", email: "", subject: "", message: "" },
+  initialValues = { ime: "", email: "", zadeva: "", sporocilo: "" },
   onSubmitSuccess,
   title = "Pošljite nam sporočilo",
 }) => {
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({
-    name: "",
+    ime: "",
     email: "",
-    subject: "",
-    message: "",
+    zadeva: "",
+    sporocilo: "",
   });
   const [isVisible, setIsVisible] = useState(false);
   const [isSubmitting, setSubmitting] = useState(false);
   const [formStatus, setFormStatus] = useState({ message: "", type: "" });
   const containerRef = useRef(null);
+  const formRef = useRef(null);
 
   // Intersection Observer to detect when the form is in view
   useEffect(() => {
@@ -50,18 +53,59 @@ const FormContainer = ({
 
   const onChange = handleFormChange(formValues, setFormValues);
   const onBlur = handleFormBlur(formValues, formErrors, setFormErrors);
-  const onSubmit = handleFormSubmit(
-    formValues,
-    formErrors,
-    setFormErrors,
-    setSubmitting,
-    setFormStatus,
-    (values) => {
-      // Reset form after successful submission
-      setFormValues(initialValues);
-      if (onSubmitSuccess) onSubmitSuccess(values);
+
+  // New submit handler using EmailJS
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    // Form validation
+    let errors = {};
+    if (!formValues.ime) errors.ime = "Ime je obvezno";
+    if (!formValues.email) errors.email = "Email je obvezen";
+    else if (!/\S+@\S+\.\S+/.test(formValues.email))
+      errors.email = "Email ni veljaven";
+    if (!formValues.zadeva) errors.zadeva = "Zadeva je obvezna";
+    if (!formValues.sporocilo) errors.sporocilo = "Sporočilo je obvezno";
+
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
     }
-  );
+
+    // Submit form
+    setSubmitting(true);
+    setFormStatus({ message: "Pošiljanje sporočila...", type: "info" });
+
+    try {
+      // Send email using EmailJS
+      const result = await emailjs.sendForm(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        formRef.current,
+        PUBLIC_KEY
+      );
+
+      setFormStatus({
+        message:
+          "Sporočilo uspešno poslano! Odgovorili vam bomo v najkrajšem možnem času.",
+        type: "success",
+      });
+
+      // Reset form
+      setFormValues(initialValues);
+
+      if (onSubmitSuccess) onSubmitSuccess(formValues);
+    } catch (error) {
+      console.error("Failed to send email:", error);
+      setFormStatus({
+        message:
+          "Napaka pri pošiljanju sporočila. Prosimo, poskusite ponovno kasneje.",
+        type: "error",
+      });
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   // Animation variants
   const containerVariants = {
@@ -116,17 +160,17 @@ const FormContainer = ({
         </motion.div>
       )}
 
-      <form onSubmit={onSubmit}>
+      <form ref={formRef} onSubmit={onSubmit}>
         <motion.div variants={itemVariants}>
           <FormInput
             type="text"
             label="Ime in priimek"
-            name="name"
+            name="ime" // Changed from "name" to match template
             placeholder="Vnesite vaše ime in priimek"
-            value={formValues.name}
+            value={formValues.ime}
             onChange={onChange}
             onBlur={onBlur}
-            error={formErrors.name}
+            error={formErrors.ime}
             required
             disabled={isSubmitting}
             icon={<FaUser className="text-gray-400" />}
@@ -137,7 +181,7 @@ const FormContainer = ({
           <FormInput
             type="email"
             label="Email naslov"
-            name="email"
+            name="email" // This was already correct
             placeholder="vase.ime@primer.com"
             value={formValues.email}
             onChange={onChange}
@@ -154,12 +198,12 @@ const FormContainer = ({
           <FormInput
             type="text"
             label="Zadeva"
-            name="subject"
+            name="zadeva" // Changed from "subject" to match template
             placeholder="Zadeva sporočila"
-            value={formValues.subject}
+            value={formValues.zadeva}
             onChange={onChange}
             onBlur={onBlur}
-            error={formErrors.subject}
+            error={formErrors.zadeva}
             required
             disabled={isSubmitting}
             icon={<FaHeading className="text-gray-400" />}
@@ -170,12 +214,12 @@ const FormContainer = ({
           <FormInput
             type="textarea"
             label="Vaše sporočilo"
-            name="message"
+            name="sporocilo" // Changed from "message" to match template
             placeholder="Vnesite vaše sporočilo tukaj..."
-            value={formValues.message}
+            value={formValues.sporocilo}
             onChange={onChange}
             onBlur={onBlur}
-            error={formErrors.message}
+            error={formErrors.sporocilo}
             required
             disabled={isSubmitting}
             rows={5}
