@@ -2,6 +2,7 @@ import React from "react";
 import PageHeader from "../components/Headers/PageHeader";
 import ContactContainer from "../components/Containers/ContactContainer";
 import FormContainer from "../components/Containers/FormContainer";
+import MapContainer from "../components/Containers/Map";
 
 const Contact = () => {
   const handleFormSubmitSuccess = (formData) => {
@@ -21,6 +22,7 @@ const Contact = () => {
       <div className="container mx-auto px-4 py-12">
         <FormContainer onSubmitSuccess={handleFormSubmitSuccess} />
       </div>
+      <MapContainer position={[45.933, 14.467]} zoom={13} />
     </>
   );
 };
