@@ -10,9 +10,9 @@ const WeatherContainer = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Trebija coordinates (approximate)
-  const lat = 46.1047;
-  const lon = 14.1091;
+  // Trebija coordinates
+  const lat = 46.09707732164205;
+  const lon = 14.102143017995592;
 
   useEffect(() => {
     const fetchWeatherData = async () => {
