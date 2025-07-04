@@ -4,6 +4,8 @@ import { FaUser, FaEnvelope, FaComment, FaHeading } from "react-icons/fa";
 import { handleFormChange, handleFormBlur } from "../../../utils/helper";
 import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // EmailJS configuration constants
 const SERVICE_ID = "service_yyoecrd";
@@ -13,7 +15,7 @@ const PUBLIC_KEY = "DVkILSWGzPajFPmqq";
 const FormContainer = ({
   initialValues = { ime: "", email: "", zadeva: "", sporocilo: "" },
   onSubmitSuccess,
-  title = "Pošljite nam sporočilo",
+  title = "Kontaktni obrazec",
 }) => {
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({
@@ -24,7 +26,6 @@ const FormContainer = ({
   });
   const [isVisible, setIsVisible] = useState(false);
   const [isSubmitting, setSubmitting] = useState(false);
-  const [formStatus, setFormStatus] = useState({ message: "", type: "" });
   const containerRef = useRef(null);
   const formRef = useRef(null);
 
@@ -54,7 +55,7 @@ const FormContainer = ({
   const onChange = handleFormChange(formValues, setFormValues);
   const onBlur = handleFormBlur(formValues, formErrors, setFormErrors);
 
-  // New submit handler using EmailJS
+  // New submit handler using EmailJS and toast notifications
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -74,37 +75,33 @@ const FormContainer = ({
 
     // Submit form
     setSubmitting(true);
-    setFormStatus({ message: "Pošiljanje sporočila...", type: "info" });
 
-    try {
-      // Send email using EmailJS
-      const result = await emailjs.sendForm(
-        SERVICE_ID,
-        TEMPLATE_ID,
-        formRef.current,
-        PUBLIC_KEY
-      );
-
-      setFormStatus({
-        message:
-          "Sporočilo uspešno poslano! Odgovorili vam bomo v najkrajšem možnem času.",
-        type: "success",
+    // Use toast.promise to handle the notification lifecycle
+    toast
+      .promise(
+        emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY),
+        {
+          pending: "Pošiljanje sporočila...",
+          success:
+            "Sporočilo uspešno poslano! Odgovorili vam bomo v najkrajšem možnem času.",
+          error:
+            "Napaka pri pošiljanju sporočila. Prosimo, poskusite ponovno kasneje.",
+        },
+        {
+          autoClose: 3000,
+        }
+      )
+      .then(() => {
+        // Reset form
+        setFormValues(initialValues);
+        if (onSubmitSuccess) onSubmitSuccess(formValues);
+      })
+      .catch((error) => {
+        console.error("Failed to send email:", error);
+      })
+      .finally(() => {
+        setSubmitting(false);
       });
-
-      // Reset form
-      setFormValues(initialValues);
-
-      if (onSubmitSuccess) onSubmitSuccess(formValues);
-    } catch (error) {
-      console.error("Failed to send email:", error);
-      setFormStatus({
-        message:
-          "Napaka pri pošiljanju sporočila. Prosimo, poskusite ponovno kasneje.",
-        type: "error",
-      });
-    } finally {
-      setSubmitting(false);
-    }
   };
 
   // Animation variants
@@ -144,21 +141,6 @@ const FormContainer = ({
       >
         {title}
       </motion.h2>
-
-      {formStatus.message && (
-        <motion.div
-          variants={itemVariants}
-          className={`mb-6 p-4 rounded-lg ${
-            formStatus.type === "success"
-              ? "bg-green-100 text-green-700 border border-green-400"
-              : formStatus.type === "error"
-              ? "bg-red-100 text-red-700 border border-red-400"
-              : "bg-blue-100 text-blue-700 border border-blue-400"
-          }`}
-        >
-          {formStatus.message}
-        </motion.div>
-      )}
 
       <form ref={formRef} onSubmit={onSubmit}>
         <motion.div variants={itemVariants}>
