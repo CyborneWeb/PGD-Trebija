@@ -55,7 +55,7 @@ const Donate = () => {
               },
             }}
           >
-            <LuHandCoins className="mx-auto text-5xl text-red-600 mb-6" />
+            <LuHandCoins className="mx-auto text-5xl text-red-600 mb-6 icon-inherit" />
           </motion.div>
 
           <motion.h2
@@ -105,12 +105,28 @@ const Donate = () => {
               y: shouldAnimate ? 0 : -50,
             }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 1.0 }}
-            whileHover={{ scale: 1.08, transition: { duration: 0.3 } }}
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 1.05 }}
+            // Explicitly set transition for both hover and non-hover states
+            transition={{
+              duration: 0.8,
+              ease: "easeOut",
+              delay: 1.0,
+              scale: {
+                type: "spring",
+                stiffness: 400,
+                damping: 17,
+                duration: 0.2,
+              },
+            }}
           >
             <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded-lg transition-colors">
-              <LuHandCoins className="text-xl" />
+              <LuHandCoins
+                className="text-xl icon-inherit"
+                aria-hidden="true"
+              />
               <span>Izpolni obrazec</span>
-              <LuArrowRight />
+              <LuArrowRight className="icon-inherit" aria-hidden="true" />
             </button>
           </motion.div>
 
@@ -121,13 +137,25 @@ const Donate = () => {
               scale: shouldAnimate ? 1 : 0.9,
               y: shouldAnimate ? 0 : 50,
             }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 1.2 }}
-            whileHover={{ scale: 1.08, transition: { duration: 0.3 } }}
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 1.05 }}
+            // Explicitly set transition for both hover and non-hover states
+            transition={{
+              duration: 0.8,
+              ease: "easeOut",
+              delay: 1.2,
+              scale: {
+                type: "spring",
+                stiffness: 400,
+                damping: 17,
+                duration: 0.2,
+              },
+            }}
           >
-            <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white hover:bg-gray-100 text-red-600 font-medium py-3 px-6 rounded-lg transition-colors">
-              <LuFileText className="text-xl" />
+            <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white hover:bg-gray-100 text-red-600  font-medium py-3 px-6 rounded-lg transition-colors">
+              <LuFileText className="text-xl" aria-hidden="true" />
               <span>Oddaj preko eDavki</span>
-              <LuArrowRight />
+              <LuArrowRight className="icon-inherit" aria-hidden="true" />
             </button>
           </motion.div>
         </div>
