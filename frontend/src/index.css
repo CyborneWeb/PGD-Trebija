@@ -4,16 +4,16 @@
 @source "../node_modules/flowbite";
 @config "../tailwind.config.js";
 
-/* Apply transitions to all elements for smoother theme switching */
+/* Apply faster transitions to all elements for smoother theme switching */
 * {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 500ms;
+  transition-duration: 150ms;
 }
 
 svg, svg path {
   transition-property: color, fill, stroke;
-  transition-duration: 500ms;
+  transition-duration: 150ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -80,3 +80,118 @@ html {
     linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
   background-size: 20px 20px;
 }
+
+/* Additional patterns for enhanced backgrounds */
+.bg-stripes-light {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(0, 0, 0, 0.05) 10px,
+    rgba(0, 0, 0, 0.05) 20px
+  );
+}
+
+.bg-stripes-dark {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(255, 255, 255, 0.05) 10px,
+    rgba(255, 255, 255, 0.05) 20px
+  );
+}
+
+.bg-dots-pattern {
+  background-image: radial-gradient(circle at 25% 25%, rgba(0, 0, 0, 0.1) 2px, transparent 2px),
+                    radial-gradient(circle at 75% 75%, rgba(0, 0, 0, 0.1) 2px, transparent 2px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+}
+
+.dark .bg-dots-pattern {
+  background-image: radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 2px, transparent 2px),
+                    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.1) 2px, transparent 2px);
+}
+
+/* Smooth scrolling for sub-navigation */
+.container {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for horizontal overflow */
+.overflow-x-auto::-webkit-scrollbar {
+  height: 4px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb {
+  background: rgba(239, 68, 68, 0.5);
+  border-radius: 2px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb:hover {
+  background: rgba(239, 68, 68, 0.7);
+}
+
+/* Ensure SVG elements transition immediately with their parent elements */
+
+.menu-item svg,
+.menu-item svg path {
+  color: inherit !important;
+  fill: currentColor !important;
+  transition: all 0ms !important; /* Remove transition delay for icons */
+}
+
+/* Force immediate color inheritance for better sync */
+
+.menu-item:hover svg,
+.menu-item:hover svg path {
+  color: inherit !important;
+  fill: currentColor !important;
+}
+
+/* Custom class for SVG icons to ensure they inherit colors properly */
+.icon-inherit {
+  display: inline-block !important;
+  line-height: 1 !important;
+}
+
+.icon-inherit svg {
+  fill: currentColor !important;
+  stroke: currentColor !important;
+  stroke-width: 0 !important;
+  width: 1em !important;
+  height: 1em !important;
+  transition: all 0.2s ease-in-out !important; /* Smooth transition for color changes */
+}
+
+/* Add this more specific rule for AboutMenu icons */
+.icon-inherit svg,
+.icon-inherit svg path {
+  fill: currentColor !important;
+  color: inherit !important;
+  stroke: currentColor !important;
+  transition: none !important; /* Remove ALL transitions for icons */
+}
+
+/* Specifically target the AboutMenu buttons */
+[class*="AboutMenu"] button svg,
+[class*="AboutMenu"] button svg path {
+  fill: currentColor !important;
+  color: inherit !important;
+  transition: none !important;
+}
+
+/* Make sure hover state also applies immediately */
+[class*="AboutMenu"] button:hover svg,
+[class*="AboutMenu"] button:hover svg path,
+[class*="AboutMenu"] button.active svg,
+[class*="AboutMenu"] button.active svg path {
+  fill: currentColor !important;
+  color: inherit !important;
+}
+
