@@ -9,6 +9,10 @@ import Contact from "./Pages/Contact";
 import ScrollToTop from "./components/Other/ScrollToTop";
 import {ToastContainer} from "react-toastify";
 import { useTheme } from "./Contexts/ThemeContext";
+import Gallery from "./Pages/Gallery";
+import About from "./Pages/About";
+import Posts from "./Pages/Posts";
+
 
 
 function App() {
@@ -52,12 +56,5 @@ function App() {
     </div>
   );
 }
-
-// Placeholder components for routes
-
-const About = () => <h1 className="text-3xl font-bold">O Društvu - izdelava še poteka</h1>;
-const Posts = () => <h1 className="text-3xl font-bold">Obvestila - izdelava še poteka</h1>;
-const Gallery = () => <h1 className="text-3xl font-bold">Galerija - izdelava še poteka</h1>;
-
 
 export default App;
