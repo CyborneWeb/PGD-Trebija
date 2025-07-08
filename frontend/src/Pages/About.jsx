@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import PageHeader from "../components/Headers/PageHeader";
 import AboutMenu from "../components/Layout/AboutMenu";
 import BasicInfo from "../components/AboutPage/BasicInfo";
+import PersonelContainer from "../components/AboutPage/PersonelContainer";
 
 const About = () => {
   const [activeSection, setActiveSection] = useState("drustvo");
@@ -40,17 +41,33 @@ const About = () => {
     },
   };
 
-  const renderContent = () => {
-    switch (activeSection) {
-      case "drustvo":
-        return (
-          <AnimatePresence mode="wait">
-            <BasicInfo />
-          </AnimatePresence>
-        );
-      case "zgodovina":
-        return (
-          <AnimatePresence mode="wait">
+  return (
+    <div>
+      <PageHeader
+        title="O nas"
+        subtitle="Spoznajte našo zgodovino ter izvedite več o našem društvu"
+      />
+      <AboutMenu
+        activeSection={activeSection}
+        onSectionChange={handleSectionChange}
+      />
+      <div className="container mx-auto px-4 py-8">
+        {/* Wrap the entire content with a single AnimatePresence */}
+        <AnimatePresence mode="wait">
+          {activeSection === "drustvo" && (
+            <motion.div
+              key="drustvo"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              <BasicInfo />
+              <PersonelContainer />
+            </motion.div>
+          )}
+
+          {activeSection === "zgodovina" && (
             <motion.div
               key="zgodovina"
               variants={containerVariants}
@@ -72,11 +89,9 @@ const About = () => {
                 Tukaj bo vsebina o zgodovini društva in pomembnih mejnikih.
               </motion.p>
             </motion.div>
-          </AnimatePresence>
-        );
-      case "pridruzitev":
-        return (
-          <AnimatePresence mode="wait">
+          )}
+
+          {activeSection === "pridruzitev" && (
             <motion.div
               key="pridruzitev"
               variants={containerVariants}
@@ -98,11 +113,9 @@ const About = () => {
                 Tukaj bo vsebina o pogojih za članstvo in prijavnem postopku.
               </motion.p>
             </motion.div>
-          </AnimatePresence>
-        );
-      case "storitve":
-        return (
-          <AnimatePresence mode="wait">
+          )}
+
+          {activeSection === "storitve" && (
             <motion.div
               key="storitve"
               variants={containerVariants}
@@ -124,24 +137,9 @@ const About = () => {
                 Tukaj bo vsebina o storitvah, ki jih društvo ponuja.
               </motion.p>
             </motion.div>
-          </AnimatePresence>
-        );
-      default:
-        return null;
-    }
-  };
-
-  return (
-    <div>
-      <PageHeader
-        title="O nas"
-        subtitle="Spoznajte našo zgodovino ter izvedite več o našem društvu"
-      />
-      <AboutMenu
-        activeSection={activeSection}
-        onSectionChange={handleSectionChange}
-      />
-      <div className="container mx-auto px-4 py-8">{renderContent()}</div>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 };
