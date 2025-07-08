@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import {
   FaBuilding,
   FaMapMarkerAlt,
@@ -10,8 +10,17 @@ import {
   FaIdCard,
   FaUniversity,
 } from "react-icons/fa";
+import InfoCard from "./InfoCard"; // Assuming InfoCard is in the same directory
 
 const BasicInfo = () => {
+  // Create refs for the scroll-triggered animations
+  const areaRef = React.useRef(null);
+  const financeRef = React.useRef(null);
+
+  // Set up useInView hooks with threshold and once options
+  const isAreaVisible = useInView(areaRef, { once: true, amount: 0.3 });
+  const isFinanceVisible = useInView(financeRef, { once: true, amount: 0.3 });
+
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -24,39 +33,35 @@ const BasicInfo = () => {
     },
   };
 
+  // Animation variants for larger content sections
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { opacity: 0, y: 20, scale: 0.95 },
     visible: {
-      y: 0,
       opacity: 1,
-      transition: { type: "spring", stiffness: 100 },
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 24,
+      },
     },
   };
 
-  // Info card component
-  const InfoCard = ({ icon, title, value, delay = 0 }) => (
-    <motion.div
-      className="bg-white dark:bg-gray-800 p-5 rounded-lg shadow-md"
-      variants={itemVariants}
-      transition={{ delay }}
-    >
-      <div className="flex items-start">
-        <div className="flex-shrink-0 mr-4">
-          <div className="p-3 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-full">
-            {icon}
-          </div>
-        </div>
-        <div>
-          <h3 className="text-sm text-gray-500 dark:text-gray-400 uppercase font-medium mb-1">
-            {title}
-          </h3>
-          <div className="text-lg font-semibold text-gray-800 dark:text-white">
-            {value}
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
+  // Animation variants specifically for the scroll-triggered sections
+  const scrollVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 24,
+        duration: 0.7,
+      },
+    },
+  };
 
   return (
     <motion.div
@@ -110,14 +115,16 @@ const BasicInfo = () => {
         />
 
         <motion.div
-          className="md:col-span-2 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md"
-          variants={itemVariants}
-          transition={{ delay: 0.4 }}
+          ref={areaRef}
+          className="md:col-span-2 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md transition-shadow hover:shadow-lg"
+          initial="hidden"
+          animate={isAreaVisible ? "visible" : "hidden"}
+          variants={scrollVariants}
         >
           <div className="flex items-start">
             <div className="flex-shrink-0 mr-4">
               <div className="p-3 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-full">
-                <FaGlobe className="text-xl" />
+                <FaGlobe className="text-xl react-icon" />
               </div>
             </div>
             <div>
@@ -125,25 +132,29 @@ const BasicInfo = () => {
                 Območje delovanja
               </h3>
               <div className="text-lg font-semibold text-gray-800 dark:text-white">
-                Na okolici krajevne skupnosti Trebija, vključno z naselji: Fužine, Hobovše pri Stari Oselici (hiš. št. 13 in 14), Kladje, Podgora, Stara Oselica ter Trebija
+                Na okolici krajevne skupnosti Trebija, vključno z naselji:
+                Fužine, Hobovše pri Stari Oselici (hiš. št. 13 in 14), Kladje,
+                Podgora, Stara Oselica ter Trebija
               </div>
             </div>
           </div>
         </motion.div>
 
         <motion.div
-          className="md:col-span-2 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md"
-          variants={itemVariants}
-          transition={{ delay: 0.5 }}
+          ref={financeRef}
+          className="md:col-span-2 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md transition-shadow hover:shadow-lg"
+          initial="hidden"
+          animate={isFinanceVisible ? "visible" : "hidden"}
+          variants={scrollVariants}
         >
           <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4 flex items-center">
-            <FaMoneyBillWave className="mr-2 text-red-600 dark:text-red-400" />
+            <FaMoneyBillWave className="mr-2 text-red-600 dark:text-red-400 react-icon" />
             Finančni podatki
           </h3>
 
           <div className="grid md:grid-cols-2 gap-6">
             <div className="flex items-center">
-              <FaUniversity className="text-red-600 dark:text-red-400 mr-3 text-xl" />
+              <FaUniversity className="text-red-600 dark:text-red-400 mr-3 text-xl react-icon" />
               <div>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   Transakcijski račun
@@ -155,7 +166,7 @@ const BasicInfo = () => {
             </div>
 
             <div className="flex items-center">
-              <FaIdCard className="text-red-600 dark:text-red-400 mr-3 text-xl" />
+              <FaIdCard className="text-red-600 dark:text-red-400 mr-3 text-xl react-icon" />
               <div>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   Davčna številka
