@@ -11,32 +11,32 @@ const PersonelContainer = () => {
   // Leadership data - simplified to only include name, position and basic user icon
   const leadershipData = [
     {
-      name: "Janez Novak",
+      name: "Tomaž Kokelj",
       position: "Predsednik",
       icon: <FaUser />,
     },
     {
-      name: "Marko Kovač",
+      name: "Tomaž Jereb",
       position: "Poveljnik",
       icon: <FaUser />,
     },
     {
-      name: "Andrej Horvat",
+      name: "?",
       position: "Namestnik poveljnika",
       icon: <FaUser />,
     },
     {
-      name: "Peter Kranjc",
+      name: "Urban Kokelj",
       position: "Podpoveljnik",
       icon: <FaUser />,
     },
     {
-      name: "Ana Zupančič",
-      position: "Tajnik",
+      name: "Tadeja Klemenčič",
+      position: "Tajnica",
       icon: <FaUser />,
     },
     {
-      name: "Maja Vidmar",
+      name: "?",
       position: "Blagajnik",
       icon: <FaUser />,
     },
