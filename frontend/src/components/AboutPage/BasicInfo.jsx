@@ -116,7 +116,7 @@ const BasicInfo = () => {
 
         <motion.div
           ref={areaRef}
-          className="md:col-span-2 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md transition-shadow hover:shadow-lg"
+          className="md:col-span-2 bg-white dark:bg-gray-700/50 p-6 rounded-lg shadow-md transition-shadow hover:shadow-lg"
           initial="hidden"
           animate={isAreaVisible ? "visible" : "hidden"}
           variants={scrollVariants}
@@ -142,7 +142,7 @@ const BasicInfo = () => {
 
         <motion.div
           ref={financeRef}
-          className="md:col-span-2 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md transition-shadow hover:shadow-lg"
+          className="md:col-span-2 bg-white dark:bg-gray-700/50 p-6 rounded-lg shadow-md transition-shadow hover:shadow-lg"
           initial="hidden"
           animate={isFinanceVisible ? "visible" : "hidden"}
           variants={scrollVariants}
