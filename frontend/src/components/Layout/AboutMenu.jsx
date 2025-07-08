@@ -20,9 +20,9 @@ const AboutMenu = ({ activeSection, onSectionChange }) => {
               <motion.button
                 key={item.id}
                 onClick={() => onSectionChange(item.id)}
-                className={`flex flex-col items-center justify-center p-3 rounded-lg ${
+                className={`menu-item flex flex-col items-center justify-center p-3 rounded-lg ${
                   activeSection === item.id
-                    ? "bg-red-600 text-white"
+                    ? "bg-red-600 text-white active"
                     : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
                 }`}
                 whileTap={{ scale: 0.95 }}
@@ -40,9 +40,9 @@ const AboutMenu = ({ activeSection, onSectionChange }) => {
             <motion.button
               key={item.id}
               onClick={() => onSectionChange(item.id)}
-              className={`flex items-center space-x-2 px-6 py-4 text-sm font-medium transition-colors ${
+              className={`menu-item flex items-center space-x-2 px-6 py-4 text-sm font-medium ${
                 activeSection === item.id
-                  ? "text-red-600 border-b-2 border-red-600 dark:text-red-500 dark:border-red-500"
+                  ? "text-red-600 border-b-2 border-red-600 dark:text-red-500 dark:border-red-500 active"
                   : "text-gray-600 hover:text-red-500 dark:text-gray-300 dark:hover:text-red-400"
               }`}
               whileHover={{ y: -2 }}
