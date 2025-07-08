@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import PageHeader from "../components/Headers/PageHeader";
 import AboutMenu from "../components/Layout/AboutMenu";
+import BasicInfo from "../components/AboutPage/BasicInfo";
 
 const About = () => {
   const [activeSection, setActiveSection] = useState("drustvo");
@@ -14,19 +15,9 @@ const About = () => {
     switch (activeSection) {
       case "drustvo":
         return (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="space-y-6"
-          >
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
-              Splošne informacije o društvu
-            </h2>
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-              Tukaj bo vsebina o društvu in splošne informacije.
-            </p>
-          </motion.div>
+          <BasicInfo />
+
+
         );
       case "zgodovina":
         return (
