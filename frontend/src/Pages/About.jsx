@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import PageHeader from "../components/Headers/PageHeader";
 import AboutMenu from "../components/Layout/AboutMenu";
 import BasicInfo from "../components/AboutPage/BasicInfo";
@@ -11,61 +11,120 @@ const About = () => {
     setActiveSection(sectionId);
   };
 
+  // Animation variants for content sections
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+    exit: {
+      opacity: 0,
+      transition: { duration: 0.2 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 24,
+      },
+    },
+  };
+
   const renderContent = () => {
     switch (activeSection) {
       case "drustvo":
         return (
-          <BasicInfo />
-
-
+          <AnimatePresence mode="wait">
+            <BasicInfo />
+          </AnimatePresence>
         );
       case "zgodovina":
         return (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="space-y-6"
-          >
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
-              Ustanovitev in zgodovina
-            </h2>
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-              Tukaj bo vsebina o zgodovini društva in pomembnih mejnikih.
-            </p>
-          </motion.div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key="zgodovina"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="space-y-6"
+            >
+              <motion.h2
+                variants={itemVariants}
+                className="text-2xl font-bold text-gray-800 dark:text-white"
+              >
+                Ustanovitev in zgodovina
+              </motion.h2>
+              <motion.p
+                variants={itemVariants}
+                className="text-gray-600 dark:text-gray-300 leading-relaxed"
+              >
+                Tukaj bo vsebina o zgodovini društva in pomembnih mejnikih.
+              </motion.p>
+            </motion.div>
+          </AnimatePresence>
         );
       case "pridruzitev":
         return (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="space-y-6"
-          >
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
-              Pridruži se nam
-            </h2>
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-              Tukaj bo vsebina o pogojih za članstvo in prijavnem postopku.
-            </p>
-          </motion.div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key="pridruzitev"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="space-y-6"
+            >
+              <motion.h2
+                variants={itemVariants}
+                className="text-2xl font-bold text-gray-800 dark:text-white"
+              >
+                Pridruži se nam
+              </motion.h2>
+              <motion.p
+                variants={itemVariants}
+                className="text-gray-600 dark:text-gray-300 leading-relaxed"
+              >
+                Tukaj bo vsebina o pogojih za članstvo in prijavnem postopku.
+              </motion.p>
+            </motion.div>
+          </AnimatePresence>
         );
       case "storitve":
         return (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="space-y-6"
-          >
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
-              Naše storitve
-            </h2>
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-              Tukaj bo vsebina o storitvah, ki jih društvo ponuja.
-            </p>
-          </motion.div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key="storitve"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="space-y-6"
+            >
+              <motion.h2
+                variants={itemVariants}
+                className="text-2xl font-bold text-gray-800 dark:text-white"
+              >
+                Naše storitve
+              </motion.h2>
+              <motion.p
+                variants={itemVariants}
+                className="text-gray-600 dark:text-gray-300 leading-relaxed"
+              >
+                Tukaj bo vsebina o storitvah, ki jih društvo ponuja.
+              </motion.p>
+            </motion.div>
+          </AnimatePresence>
         );
       default:
         return null;
