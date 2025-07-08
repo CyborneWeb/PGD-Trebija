@@ -169,29 +169,33 @@ html {
   transition: all 0.2s ease-in-out !important; /* Smooth transition for color changes */
 }
 
-/* Remove these conflicting rules */
-.icon-inherit svg,
-.icon-inherit svg path {
-  fill: currentColor !important;
-  color: inherit !important;
-  stroke: currentColor !important;
-  transition: none !important; /* Remove ALL transitions for icons */
-}
-
-/* Add proper React icon styling */
+/* Remove these conflicting rules that disable all animations */
+/* Add proper React icon styling that preserves animations */
 .react-icon {
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .react-icon svg {
-  fill: currentColor !important;
-  color: inherit !important;
-  stroke: none !important; /* Most icons need fill, not stroke */
-  transition: none !important; /* No transition delay */
-  width: 1em;
-  height: 1em;
+  fill: currentColor;
+  stroke: none;
+}
+
+/* If some icons need stroke instead of fill */
+.react-icon-stroke svg {
+  fill: none;
+  stroke: currentColor;
+}
+
+/* Allow animations but prevent theme transition delay */
+.react-icon svg {
+  transition-property: transform, opacity, scale !important;
+  transition-duration: 0.3s !important;
+}
+
+/* Only theme-related properties should have no transition */
+.react-icon svg * {
+  transition-property: fill, stroke, color !important;
+  transition-duration: 0ms !important;
 }
 
 /* Special case for stroke-based icons */
@@ -199,12 +203,19 @@ html {
   fill: none !important;
   stroke: currentColor !important;
   stroke-width: 2 !important;
-  transition: none !important;
+  /* Allow animations but prevent theme transition delay */
+  transition-property: transform, opacity, scale !important;
+  transition-duration: 0.3s !important;
 }
 
 /* Force immediate color changes on hover and active states */
 button:hover .react-icon svg,
 .active .react-icon svg,
+[class*="active"] .react-icon svg {
+  transition: none !important;
+  fill: currentColor !important;
+  color: inherit !important;
+}
 [class*="active"] .react-icon svg {
   transition: none !important;
   fill: currentColor !important;
