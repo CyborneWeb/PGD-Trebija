@@ -1,38 +1,30 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef } from "react";
 import { LuHandCoins, LuArrowRight, LuFileText } from "react-icons/lu";
 import { motion, useInView } from "framer-motion";
 
 const Donate = () => {
   const ref = useRef(null);
-  // Changed to once: true to only animate on first view
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
-  const [isFirstLoad, setIsFirstLoad] = useState(true);
-
-  // Set first load to false after initial animation completes
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsFirstLoad(false);
-    }, 3000); // Extended time
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Only animate on first load or first scroll into view
-  const shouldAnimate = isFirstLoad || isInView;
+  // Use amount: 0.1 to trigger earlier and add a margin
+  const isInView = useInView(ref, {
+    once: true,
+    amount: 0.1,
+    margin: "0px 0px -100px 0px", // Negative bottom margin to trigger earlier
+  });
 
   return (
     <motion.section
       ref={ref}
       className="bg-bottom bg-no-repeat bg-cover bg-[url('/src/assets/donate.jpg')] bg-gray-700 bg-blend-multiply"
       initial={{ opacity: 0 }}
-      animate={{ opacity: shouldAnimate ? 1 : 0 }}
+      animate={{ opacity: isInView ? 1 : 0 }}
       transition={{ duration: 1.0, ease: "easeOut" }}
     >
       <div className="px-4 mx-auto max-w-screen-xl text-center py-16 lg:py-24 mb-0 lg:mb-0">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{
-            opacity: shouldAnimate ? 1 : 0,
-            y: shouldAnimate ? 0 : 50,
+            opacity: isInView ? 1 : 0,
+            y: isInView ? 0 : 50,
           }}
           transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
           className="max-w-4xl mx-auto text-center"
@@ -40,9 +32,9 @@ const Donate = () => {
           <motion.div
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{
-              scale: shouldAnimate ? 1 : 0.5,
-              opacity: shouldAnimate ? 1 : 0,
-              rotate: shouldAnimate ? [0, 10, 0] : 0,
+              scale: isInView ? 1 : 0.5,
+              opacity: isInView ? 1 : 0,
+              rotate: isInView ? [0, 10, 0] : 0,
             }}
             transition={{
               duration: 1.0,
@@ -62,8 +54,8 @@ const Donate = () => {
             className="text-3xl md:text-4xl font-bold mb-4 pb-2 border-b-2 border-red-600 inline-block text-white"
             initial={{ opacity: 0, y: 30 }}
             animate={{
-              opacity: shouldAnimate ? 1 : 0,
-              y: shouldAnimate ? 0 : 30,
+              opacity: isInView ? 1 : 0,
+              y: isInView ? 0 : 30,
             }}
             transition={{ duration: 1.0, ease: "easeOut", delay: 0.7 }}
           >
@@ -100,14 +92,12 @@ const Donate = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: -50 }}
             animate={{
-              opacity: shouldAnimate ? 1 : 0,
-              scale: shouldAnimate ? 1 : 0.9,
-              y: shouldAnimate ? 0 : -50,
+              opacity: isInView ? 1 : 0,
+              scale: isInView ? 1 : 0.9,
+              y: isInView ? 0 : -50,
             }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 1.0 }}
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 1.05 }}
-            // Explicitly set transition for both hover and non-hover states
             transition={{
               duration: 0.8,
               ease: "easeOut",
@@ -116,7 +106,6 @@ const Donate = () => {
                 type: "spring",
                 stiffness: 400,
                 damping: 17,
-                duration: 0.2,
               },
             }}
           >
@@ -133,13 +122,12 @@ const Donate = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 50 }}
             animate={{
-              opacity: shouldAnimate ? 1 : 0,
-              scale: shouldAnimate ? 1 : 0.9,
-              y: shouldAnimate ? 0 : 50,
+              opacity: isInView ? 1 : 0,
+              scale: isInView ? 1 : 0.9,
+              y: isInView ? 0 : 50,
             }}
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 1.05 }}
-            // Explicitly set transition for both hover and non-hover states
             transition={{
               duration: 0.8,
               ease: "easeOut",
@@ -148,7 +136,6 @@ const Donate = () => {
                 type: "spring",
                 stiffness: 400,
                 damping: 17,
-                duration: 0.2,
               },
             }}
           >
