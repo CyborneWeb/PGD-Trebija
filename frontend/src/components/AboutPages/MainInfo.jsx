@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import BasicInfo from "../AboutPage/BasicInfo";
+import PersonelContainer from "../AboutPage/PersonelContainer";
 
 const MainInfo = () => {
   return (
-    <div>MainInfo</div>
-  )
-}
+    <>
+      <BasicInfo />
+      <PersonelContainer />
+    </>
+  );
+};
 
-export default MainInfo
+export default MainInfo;
