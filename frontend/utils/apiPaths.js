@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:3001";
+export const BASE_URL = "http://192.168.1.143:8000";
 
 export const API_PATHS = {
   WEATHER: {
