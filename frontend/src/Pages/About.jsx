@@ -4,6 +4,7 @@ import PageHeader from "../components/Headers/PageHeader";
 import AboutMenu from "../components/Layout/AboutMenu";
 import BasicInfo from "../components/AboutPage/BasicInfo";
 import PersonelContainer from "../components/AboutPage/PersonelContainer";
+import JoinUs from "../components/AboutPage/JoinUs";
 
 const About = () => {
   const [activeSection, setActiveSection] = useState("drustvo");
@@ -92,27 +93,7 @@ const About = () => {
           )}
 
           {activeSection === "pridruzitev" && (
-            <motion.div
-              key="pridruzitev"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              className="space-y-6"
-            >
-              <motion.h2
-                variants={itemVariants}
-                className="text-2xl font-bold text-gray-800 dark:text-white"
-              >
-                Pridruži se nam
-              </motion.h2>
-              <motion.p
-                variants={itemVariants}
-                className="text-gray-600 dark:text-gray-300 leading-relaxed"
-              >
-                Tukaj bo vsebina o pogojih za članstvo in prijavnem postopku.
-              </motion.p>
-            </motion.div>
+            <JoinUs></JoinUs>
           )}
 
           {activeSection === "storitve" && (
