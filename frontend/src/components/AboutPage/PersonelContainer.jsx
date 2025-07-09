@@ -21,12 +21,12 @@ const PersonelContainer = () => {
       icon: <FaUser />,
     },
     {
-      name: "?",
+      name: "Urban Kokalj",
       position: "Namestnik poveljnika",
       icon: <FaUser />,
     },
     {
-      name: "Urban Kokelj",
+      name: "Andrej Jereb",
       position: "Podpoveljnik",
       icon: <FaUser />,
     },
@@ -36,8 +36,8 @@ const PersonelContainer = () => {
       icon: <FaUser />,
     },
     {
-      name: "?",
-      position: "Blagajnik",
+      name: "Mihaela Kokalj",
+      position: "Blagajničarka",
       icon: <FaUser />,
     },
   ];
