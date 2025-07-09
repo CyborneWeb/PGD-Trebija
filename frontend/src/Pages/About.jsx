@@ -4,7 +4,8 @@ import PageHeader from "../components/Headers/PageHeader";
 import AboutMenu from "../components/Layout/AboutMenu";
 import BasicInfo from "../components/AboutPage/BasicInfo";
 import PersonelContainer from "../components/AboutPage/PersonelContainer";
-import JoinUs from "../components/AboutPage/JoinUs";
+import JoinUs from "../components/AboutPages/JoinUs";
+import MainInfo from "../components/AboutPages/MainInfo";
 
 const About = () => {
   const [activeSection, setActiveSection] = useState("drustvo");
@@ -63,8 +64,7 @@ const About = () => {
               animate="visible"
               exit="exit"
             >
-              <BasicInfo />
-              <PersonelContainer />
+              <MainInfo />
             </motion.div>
           )}
 
