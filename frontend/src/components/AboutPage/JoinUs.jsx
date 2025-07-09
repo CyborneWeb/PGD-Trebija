@@ -8,6 +8,7 @@ import {
   FaFireExtinguisher,
   FaQuestionCircle, // Replaced FaHeart with FaQuestionCircle
 } from "react-icons/fa";
+import image from "../../assets/donate.jpg"
 
 const JoinUs = () => {
   // Reference for checking when section is in view
@@ -145,13 +146,13 @@ const JoinUs = () => {
             variants={imageVariants}
             className="order-first md:order-last relative h-80 md:h-full"
           >
-            <div className="absolute -top-6 -left-6 w-24 h-24 bg-red-200 dark:bg-red-900/20 rounded-full z-0"></div>
-            <div className="absolute -bottom-8 -right-8 w-40 h-40 bg-red-100 dark:bg-red-900/10 rounded-full z-0"></div>
+            <div className="absolute -top-6 -left-6 w-24 h-24 bg-red-200 dark:bg-red-900/80 rounded-full z-10"></div>
+            <div className="absolute -bottom-8 -right-8 w-40 h-40 bg-red-100 dark:bg-red-900/80 rounded-full z-0"></div>
 
             <div className="relative z-10 h-full w-full rounded-xl overflow-hidden shadow-xl">
               {/* Replace this with your actual image */}
               <img
-                src="/src/assets/firefighter.jpg"
+                src={image}
                 alt="Gasilci PGD Trebija"
                 className="w-full h-full object-cover"
                 onError={(e) => {
@@ -161,9 +162,9 @@ const JoinUs = () => {
                 }}
               />
 
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
                 <p className="text-white font-medium">
-                  Postani del naše gasilske družine
+                  Postani del našega gasilskega društva
                 </p>
               </div>
             </div>
