@@ -97,21 +97,21 @@ const BasicInfo = () => {
         <InfoCard
           icon={<FaMapMarkerAlt className="text-2xl" />}
           title="Sedež društva"
-          value="Trebija 45, 4224 Gorenja vas"
+          value="Trebija 4, 4224 Gorenja vas"
           delay={0.1}
         />
 
         <InfoCard
           icon={<FaPhoneAlt className="text-2xl" />}
           title="Telefon"
-          value="+386 4 123 4567"
+          value="+386 51 327 888"
           delay={0.2}
         />
 
         <InfoCard
           icon={<FaEnvelope className="text-2xl" />}
           title="E-pošta"
-          value="info@pgd-trebija.si"
+          value="pgdtrebija@gmail.com"
           delay={0.3}
         />
 
