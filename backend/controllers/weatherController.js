@@ -29,7 +29,7 @@ const getWeather = async (req, res) => {
       
       
     });
-    console.log(response.data)
+    //console.log(response.data)
   } catch (err) {
     console.error("Weather API Error:", err.response?.data || err.message);
     res.status(500).json({
