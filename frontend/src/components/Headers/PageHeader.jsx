@@ -4,6 +4,9 @@ import { motion } from "framer-motion";
 const PageHeader = ({ title, subtitle }) => {
   return (
     <div className="relative overflow-hidden w-full">
+      {/* Solid background layer - added for opacity */}
+      <div className="absolute inset-0 bg-red-50 dark:bg-gray-900"></div>
+
       {/* Enhanced background pattern with multiple layers */}
       <div className="absolute inset-0">
         {/* Base pattern layer */}

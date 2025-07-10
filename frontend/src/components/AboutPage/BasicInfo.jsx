@@ -117,7 +117,7 @@ const BasicInfo = () => {
 
         <motion.div
           ref={areaRef}
-          className="md:col-span-2 bg-white dark:bg-gray-700/50 p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-600"
+          className="md:col-span-2 bg-white dark:bg-gray-700/80 p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-600"
           initial="hidden"
           animate={isAreaVisible ? "visible" : "hidden"}
           variants={scrollVariants}
@@ -143,7 +143,7 @@ const BasicInfo = () => {
 
         <motion.div
           ref={financeRef}
-          className="md:col-span-2 bg-white dark:bg-gray-700/50 p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-600"
+          className="md:col-span-2 bg-white dark:bg-gray-700/80 p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-600"
           initial="hidden"
           animate={isFinanceVisible ? "visible" : "hidden"}
           variants={scrollVariants}
@@ -154,7 +154,7 @@ const BasicInfo = () => {
           </h3>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="flex items-center bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg transition-transform hover:scale-[1.02] duration-300">
+            <div className="flex items-center bg-gray-50 dark:bg-gray-800/80 p-4 rounded-lg transition-transform hover:scale-[1.02] duration-300">
               <div className="p-3 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-full shadow-sm mr-4">
                 <FaUniversity className="text-2xl react-icon" />
               </div>

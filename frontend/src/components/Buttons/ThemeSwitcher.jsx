@@ -9,7 +9,7 @@ const ThemeSwitcher = ({ className = "" }) => {
   return (
     <motion.button
       onClick={toggleTheme}
-      className={`w-10 h-10 rounded-full flex items-center justify-center shadow-md ${
+      className={`w-10 h-10 rounded-full flex items-center justify-center shadow-md border border-gray-300 dark:border-gray-800 ${
         theme === "light"
           ? "bg-gray-200 text-red-500 hover:bg-gray-300"
           : "bg-gray-700 text-red-500 hover:bg-gray-600"

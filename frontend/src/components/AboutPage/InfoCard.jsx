@@ -38,7 +38,7 @@ const InfoCard = ({ icon, title, value, delay = 0 }) => {
 
   return (
     <motion.div
-      className="bg-white dark:bg-gray-700/50 p-5 rounded-lg shadow-md transition-shadow"
+      className="bg-white dark:bg-gray-700/80 p-5 rounded-lg shadow-md transition-shadow"
       variants={itemVariants}
       initial="hidden"
       animate="visible"
