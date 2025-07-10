@@ -92,8 +92,31 @@ const About = () => {
             </motion.div>
           )}
 
-          {activeSection === "pridruzitev" && (
-            <JoinUs></JoinUs>
+          {activeSection === "pridruzitev" && <JoinUs></JoinUs>}
+
+          {activeSection === "vozila" && (
+            <motion.div
+              key="vozila"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="space-y-6"
+            >
+              <motion.h2
+                variants={itemVariants}
+                className="text-2xl font-bold text-gray-800 dark:text-white"
+              >
+                Naša vozila
+              </motion.h2>
+              <motion.p
+                variants={itemVariants}
+                className="text-gray-600 dark:text-gray-300 leading-relaxed"
+              >
+                Tukaj bo predstavitev vozil in opreme, ki jih uporabljamo pri
+                našem delu.
+              </motion.p>
+            </motion.div>
           )}
 
           {activeSection === "storitve" && (
