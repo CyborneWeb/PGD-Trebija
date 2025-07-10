@@ -27,7 +27,7 @@ const AboutMenu = ({ activeSection, onSectionChange }) => {
               <motion.button
                 key={item.id}
                 onClick={() => onSectionChange(item.id)}
-                className={`menu-item flex flex-col items-center justify-center p-3 rounded-lg ${
+                className={`menu-item flex flex-col items-center justify-center p-3 rounded-lg min-w-[70px] ${
                   activeSection === item.id
                     ? "bg-red-600 text-white active"
                     : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
