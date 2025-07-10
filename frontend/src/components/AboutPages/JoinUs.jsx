@@ -68,7 +68,7 @@ const JoinUs = () => {
               <div className="flex items-center">
                 <FaUsers className="text-red-600 mr-3 text-2xl react-icon" />
                 <h2 className="text-3xl font-bold text-gray-800 dark:text-white">
-                  Pridruži se naši ekipi
+                  Pridruži se našemu društvu
                 </h2>
               </div>
               <div className="w-20 h-1 bg-red-600 rounded-full"></div>
@@ -99,7 +99,7 @@ const JoinUs = () => {
                     <FaFireExtinguisher className="text-red-600 text-sm react-icon" />
                   </span>
                   <span className="text-gray-700 dark:text-gray-300">
-                    Pridobite dragocena znanja o gasilstvu in reševanju
+                    Pridobi dragocena znanja in veščine
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -107,7 +107,7 @@ const JoinUs = () => {
                     <FaFireExtinguisher className="text-red-600 text-sm react-icon" />
                   </span>
                   <span className="text-gray-700 dark:text-gray-300">
-                    Postanite del tesno povezane skupnosti
+                    Postanite del povezanega društva
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -115,7 +115,7 @@ const JoinUs = () => {
                     <FaFireExtinguisher className="text-red-600 text-sm react-icon" />
                   </span>
                   <span className="text-gray-700 dark:text-gray-300">
-                    Pomagajte vaši lokalni skupnosti
+                    Pomagajte vašemu kraju in okolici
                   </span>
                 </li>
               </ul>

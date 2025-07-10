@@ -1,12 +1,19 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaUsers, FaHistory, FaHandsHelping, FaTools } from "react-icons/fa";
+import {
+  FaUsers,
+  FaHistory,
+  FaHandsHelping,
+  FaTools,
+  FaTruck,
+} from "react-icons/fa";
 
 const AboutMenu = ({ activeSection, onSectionChange }) => {
   const menuItems = [
     { id: "drustvo", label: "O društvu", icon: <FaUsers /> },
     { id: "zgodovina", label: "Zgodovina", icon: <FaHistory /> },
     { id: "pridruzitev", label: "Pridruži se", icon: <FaHandsHelping /> },
+    { id: "vozila", label: "Vozila", icon: <FaTruck /> },
     { id: "storitve", label: "Storitve", icon: <FaTools /> },
   ];
 
