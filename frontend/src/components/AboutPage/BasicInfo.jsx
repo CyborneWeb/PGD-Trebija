@@ -162,7 +162,7 @@ const BasicInfo = () => {
                 <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
                   Transakcijski račun
                 </p>
-                <p className="font-bold text-gray-800 dark:text-white text-lg">
+                <p className="font-bold text-gray-800 dark:text-white text-base md:text-lg break-all">
                   SI56 0700 0000 0180 025
                 </p>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
@@ -179,11 +179,11 @@ const BasicInfo = () => {
                 <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
                   Davčna številka
                 </p>
-                <div className="flex items-center">
-                  <p className="font-bold text-gray-800 dark:text-white text-lg">
-                    90738055
-                  </p>
-                  <span className="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300">
+                <p className="font-bold text-gray-800 dark:text-white text-lg">
+                  90738055
+                </p>
+                <div className="mt-1">
+                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300">
                     <FaInfoCircle className="mr-1 text-xs" />
                     Društvo ni davčni zavezanec
                   </span>
