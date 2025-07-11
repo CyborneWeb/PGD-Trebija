@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { LuArrowRight } from "react-icons/lu";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const ref = useRef(null);
@@ -70,9 +70,7 @@ const Hero = () => {
         </motion.p>
 
         <div className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
-          <motion.a
-            href="#"
-            className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
+          <motion.div
             initial={{ opacity: 0, y: 100 }}
             animate={{
               opacity: shouldAnimate ? 1 : 0,
@@ -89,18 +87,23 @@ const Hero = () => {
             }}
             whileTap={{ scale: 0.95 }}
           >
-            O Društvu
-            <motion.div
-              animate={{ x: [0, 5, 0] }}
-              transition={{
-                repeat: Infinity,
-                duration: 1.5,
-                repeatDelay: 0.5,
-              }}
+            <Link
+              to="/drustvo"
+              className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
             >
-              <LuArrowRight className="w-6 h-6 ms-2" />
-            </motion.div>
-          </motion.a>
+              O Društvu
+              <motion.div
+                animate={{ x: [0, 5, 0] }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 1.5,
+                  repeatDelay: 0.5,
+                }}
+              >
+                <LuArrowRight className="w-6 h-6 ms-2" />
+              </motion.div>
+            </Link>
+          </motion.div>
         </div>
       </div>
     </motion.section>
