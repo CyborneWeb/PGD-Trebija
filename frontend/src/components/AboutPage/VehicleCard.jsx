@@ -30,12 +30,12 @@ const VehicleCard = ({ title, description, imageUrl }) => {
       transition={{ duration: 0.5 }}
     >
       <div className="flex flex-col md:flex-row">
-        {/* Image section */}
-        <div className="relative md:w-1/3">
+        {/* Image section - reduced width from 1/3 to 1/4 */}
+        <div className="relative md:w-1/4">
           <img
-            src={imageUrl || placeholder} // Replace with actual image URL
+            src={imageUrl || placeholder}
             alt={`Gasilsko vozilo ${title}`}
-            className="w-full h-48 md:h-full object-cover object-center"
+            className="w-full h-40 md:h-full object-cover object-center"
           />
           <div className="absolute top-0 left-0 bg-red-600 text-white px-3 py-1 rounded-br-lg">
             <FaTruck className="inline-block mr-1 react-icon" />
@@ -43,13 +43,25 @@ const VehicleCard = ({ title, description, imageUrl }) => {
           </div>
         </div>
 
-        {/* Content section */}
-        <div className="p-5 md:w-2/3 flex flex-col justify-between">
+        {/* Content section - increased width */}
+        <div className="p-4 md:w-3/4 flex flex-col justify-between">
           <div>
-            <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2 flex items-center">
-              {title}
-              <FaInfoCircle className="ml-2 text-red-500 text-sm" />
-            </h3>
+            <div className="flex justify-between items-start mb-2">
+              <h3 className="text-xl font-bold text-gray-800 dark:text-white flex items-center">
+                {title}
+                <FaInfoCircle className="ml-2 text-red-500 text-sm" />
+              </h3>
+
+              {/* Moved button up next to title */}
+              <motion.button
+                className="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-sm rounded-lg flex items-center"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <FaTools className="mr-1 text-xs" />
+                Podrobnosti
+              </motion.button>
+            </div>
 
             <div className="text-gray-600 dark:text-gray-300 leading-relaxed">
               <p>{truncatedDescription || "Opis vozila bo dodan kmalu."}</p>
@@ -71,21 +83,6 @@ const VehicleCard = ({ title, description, imageUrl }) => {
               )}
             </div>
           </div>
-
-          <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700 flex justify-between items-center">
-            <span className="text-sm text-gray-500 dark:text-gray-400 flex items-center">
-              <FaTools className="mr-1 react-icon" />
-              Tehnični podatki
-            </span>
-            <motion.button
-              className="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-sm rounded-lg flex items-center"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Podrobnosti
-              <FaChevronDown className="ml-1 text-xs" />
-            </motion.button>
-          </div>
         </div>
       </div>
     </motion.div>
@@ -93,3 +90,4 @@ const VehicleCard = ({ title, description, imageUrl }) => {
 };
 
 export default VehicleCard;
+
