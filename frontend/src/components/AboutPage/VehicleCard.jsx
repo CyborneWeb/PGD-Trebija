@@ -1,53 +1,92 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FaTruck, FaInfoCircle, FaTools, FaAngleRight } from 'react-icons/fa';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  FaTruck,
+  FaInfoCircle,
+  FaTools,
+  FaChevronDown,
+  FaChevronUp,
+} from "react-icons/fa";
+import placeholder from "../../assets/placeholder.png";
 
 const VehicleCard = ({ title, description, imageUrl }) => {
+  const [expanded, setExpanded] = useState(false);
+
+  // Calculate if the description is long enough to need expansion
+  const isLongDescription = description && description.length > 100;
+
+  // Truncate description if needed
+  const truncatedDescription =
+    isLongDescription && !expanded
+      ? `${description.substring(0, 100)}...`
+      : description;
+
   return (
-    <motion.div 
-      className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col h-full"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+    <motion.div
+      className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 w-full"
+      initial={{ opacity: 0, x: -20 }}
+      whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.5 }}
-      whileHover={{ y: -5 }}
     >
-      <div className="relative">
-        <img 
-          src="/assets/placeholder.png" 
-          alt={`Gasilsko vozilo ${title}`} 
-          className="w-full h-48 object-cover object-center"
-        />
-        <div className="absolute top-0 right-0 bg-red-600 text-white px-3 py-1 rounded-bl-lg">
-          <FaTruck className="inline-block mr-1" />
-          <span className="font-medium">{title}</span>
+      <div className="flex flex-col md:flex-row">
+        {/* Image section */}
+        <div className="relative md:w-1/3">
+          <img
+            src={imageUrl || placeholder} // Replace with actual image URL
+            alt={`Gasilsko vozilo ${title}`}
+            className="w-full h-48 md:h-full object-cover object-center"
+          />
+          <div className="absolute top-0 left-0 bg-red-600 text-white px-3 py-1 rounded-br-lg">
+            <FaTruck className="inline-block mr-1 react-icon" />
+            <span className="font-medium">{title}</span>
+          </div>
         </div>
-      </div>
-      
-      <div className="p-5 flex-grow">
-        <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-3 flex items-center">
-          {title}
-          <FaInfoCircle className="ml-2 text-red-500 text-sm" />
-        </h3>
-        
-        <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-          {description || "Opis vozila bo dodan kmalu."}
-        </p>
-      </div>
-      
-      <div className="p-4 bg-gray-50 dark:bg-gray-700 border-t border-gray-100 dark:border-gray-600 flex justify-between items-center">
-        <span className="text-sm text-gray-500 dark:text-gray-400 flex items-center">
-          <FaTools className="mr-1" />
-          Tehnični podatki
-        </span>
-        <motion.button 
-          className="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-sm rounded-lg flex items-center"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          Več info
-          <FaAngleRight className="ml-1" />
-        </motion.button>
+
+        {/* Content section */}
+        <div className="p-5 md:w-2/3 flex flex-col justify-between">
+          <div>
+            <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2 flex items-center">
+              {title}
+              <FaInfoCircle className="ml-2 text-red-500 text-sm" />
+            </h3>
+
+            <div className="text-gray-600 dark:text-gray-300 leading-relaxed">
+              <p>{truncatedDescription || "Opis vozila bo dodan kmalu."}</p>
+
+              {isLongDescription && (
+                <motion.button
+                  onClick={() => setExpanded(!expanded)}
+                  className="mt-2 text-red-600 dark:text-red-400 flex items-center text-sm font-medium"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {expanded ? "Prikaži manj" : "Prikaži več"}
+                  {expanded ? (
+                    <FaChevronUp className="ml-1 text-xs" />
+                  ) : (
+                    <FaChevronDown className="ml-1 text-xs" />
+                  )}
+                </motion.button>
+              )}
+            </div>
+          </div>
+
+          <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700 flex justify-between items-center">
+            <span className="text-sm text-gray-500 dark:text-gray-400 flex items-center">
+              <FaTools className="mr-1 react-icon" />
+              Tehnični podatki
+            </span>
+            <motion.button
+              className="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-sm rounded-lg flex items-center"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Podrobnosti
+              <FaChevronDown className="ml-1 text-xs" />
+            </motion.button>
+          </div>
+        </div>
       </div>
     </motion.div>
   );
