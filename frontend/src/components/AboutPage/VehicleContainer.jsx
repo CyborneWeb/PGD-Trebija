@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaTruck, FaFireExtinguisher } from "react-icons/fa";
+import { FaTruck } from "react-icons/fa";
 import VehicleCard from "./VehicleCard";
 
 const VehicleContainer = () => {
@@ -9,22 +9,22 @@ const VehicleContainer = () => {
       id: 1,
       title: "GV-1",
       description:
-        "Gasilsko vozilo za prevoz moštva z osnovno opremo za gašenje začetnih požarov. Vozilo omogoča prevoz do 9 gasilcev in najnujnejše opreme za prvo posredovanje.",
-      imageUrl: "/assets/placeholder.png",
+        "Gasilsko vozilo za prevoz moštva z osnovno opremo za gašenje začetnih požarov. Vozilo omogoča prevoz do 9 gasilcev in najnujnejše opreme za prvo posredovanje. Opremljeno je s potopno črpalko, cevmi, ročniki, gasilniki in osebno zaščitno opremo. Vozilo je namenjeno predvsem za hitro posredovanje in podporo drugim gasilskim enotam pri večjih intervencijah.",
+      imageUrl: "src/assets/placeholder.png",
     },
     {
       id: 2,
       title: "GVC-1",
       description:
-        "Gasilsko vozilo s cisterno za prevoz vode in gašenje požarov v urbanem okolju. Opremljeno je z visokotlačno črpalko in 2000 litri vode za učinkovito gašenje.",
-      imageUrl: "/assets/placeholder.png",
+        "Gasilsko vozilo s cisterno za prevoz vode in gašenje požarov v urbanem okolju. Opremljeno je z visokotlačno črpalko in 2000 litri vode za učinkovito gašenje. Vozilo ima vgrajeno visokotlačno črpalko z zmogljivostjo 10 barov, elektroagregat in razsvetljavo za nočne intervencije. Primerno je za gašenje požarov na objektih, v prometu in za oskrbo z vodo na težje dostopnih območjih.",
+      imageUrl: "src/assets/placeholder.png",
     },
     {
       id: 3,
       title: "GVGP-1",
       description:
-        "Gasilsko vozilo za gašenje gozdnih požarov s posebno opremo za težko dostopne terene. Prilagojeno je za vožnjo po zahtevnem terenu in ima zmogljivo opremo za gozdne požare.",
-      imageUrl: "/assets/placeholder.png",
+        "Gasilsko vozilo za gašenje gozdnih požarov s posebno opremo za težko dostopne terene. Prilagojeno je za vožnjo po zahtevnem terenu in ima zmogljivo opremo za gozdne požare. Vozilo ima pogon na vsa štiri kolesa, povečano oddaljenost od tal in dodatno zaščito podvozja. Opremljeno je s 1500 litri vode, nahrbtnimi brentami, lopati, sekirami in drugo specialno opremo za gašenje požarov v naravnem okolju.",
+      imageUrl: "src/assets/placeholder.png",
     },
   ];
 
@@ -64,7 +64,7 @@ const VehicleContainer = () => {
           whileHover={{ rotate: 15, scale: 1.1 }}
           transition={{ type: "spring", stiffness: 300 }}
         >
-          <FaTruck className="text-3xl" />
+          <FaTruck className="text-3xl react-icon" />
         </motion.div>
         <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">
           Naša gasilska vozila
@@ -76,7 +76,7 @@ const VehicleContainer = () => {
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="space-y-6">
         {vehicles.map((vehicle) => (
           <VehicleCard
             key={vehicle.id}
