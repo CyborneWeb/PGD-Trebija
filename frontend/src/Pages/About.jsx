@@ -6,6 +6,7 @@ import BasicInfo from "../components/AboutPage/BasicInfo";
 import PersonelContainer from "../components/AboutPage/PersonelContainer";
 import JoinUs from "../components/AboutPages/JoinUs";
 import MainInfo from "../components/AboutPages/MainInfo";
+import Vehicles from "../components/AboutPages/Vehicles";
 
 const About = () => {
   const [activeSection, setActiveSection] = useState("drustvo");
@@ -95,28 +96,9 @@ const About = () => {
           {activeSection === "pridruzitev" && <JoinUs></JoinUs>}
 
           {activeSection === "vozila" && (
-            <motion.div
-              key="vozila"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              className="space-y-6"
-            >
-              <motion.h2
-                variants={itemVariants}
-                className="text-2xl font-bold text-gray-800 dark:text-white"
-              >
-                Naša vozila
-              </motion.h2>
-              <motion.p
-                variants={itemVariants}
-                className="text-gray-600 dark:text-gray-300 leading-relaxed"
-              >
-                Tukaj bo predstavitev vozil in opreme, ki jih uporabljamo pri
-                našem delu.
-              </motion.p>
-            </motion.div>
+            <>
+              <Vehicles />
+            </>
           )}
 
           {activeSection === "storitve" && (
