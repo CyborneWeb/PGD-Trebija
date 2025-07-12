@@ -7,6 +7,7 @@ import PersonelContainer from "../components/AboutPage/PersonelContainer";
 import JoinUs from "../components/AboutPages/JoinUs";
 import MainInfo from "../components/AboutPages/MainInfo";
 import Vehicles from "../components/AboutPages/Vehicles";
+import Services from "../components/AboutPages/Services";
 
 const About = () => {
   const [activeSection, setActiveSection] = useState("drustvo");
@@ -102,27 +103,9 @@ const About = () => {
           )}
 
           {activeSection === "storitve" && (
-            <motion.div
-              key="storitve"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              className="space-y-6"
-            >
-              <motion.h2
-                variants={itemVariants}
-                className="text-2xl font-bold text-gray-800 dark:text-white"
-              >
-                Naše storitve
-              </motion.h2>
-              <motion.p
-                variants={itemVariants}
-                className="text-gray-600 dark:text-gray-300 leading-relaxed"
-              >
-                Tukaj bo vsebina o storitvah, ki jih društvo ponuja.
-              </motion.p>
-            </motion.div>
+
+            <Services />
+
           )}
         </AnimatePresence>
       </div>
