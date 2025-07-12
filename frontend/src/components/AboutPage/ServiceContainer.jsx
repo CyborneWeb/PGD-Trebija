@@ -11,12 +11,6 @@ const ServiceContainer = () => {
   // Service data
   const services = [
     {
-      title: "Požarna straža",
-      description:
-        "Izvajamo požarno stražo pri večjih dogodkih, kjer je nevarnost, da izbruhnejo požar ali pride do eksplozije. Na podlagi ocene tveganja določimo potrebno število gasilcev in opremo.",
-      icon: "fire",
-    },
-    {
       title: "Redarstvo",
       description:
         "Opravljamo redarsko službo na dogodkih in večjih prireditvah.",
@@ -79,7 +73,7 @@ const ServiceContainer = () => {
           </p>
         </motion.div>
 
-        <div className="max-w-3xl mx-auto">
+        <div className="w-full lg:w-4/5 mx-auto">
           {services.map((service, index) => (
             <ServiceCard
               key={service.title}
