@@ -7,7 +7,7 @@ import {
   FaChevronDown,
   FaChevronUp,
 } from "react-icons/fa";
-import placeholder from "/src/assets/placeholder.png";
+const placeholder = "/assets/placeholder.png";
 
 const VehicleCard = ({ title, description, imageUrl }) => {
   const [expanded, setExpanded] = useState(false);
