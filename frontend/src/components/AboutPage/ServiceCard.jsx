@@ -1,6 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaTruck, FaShieldAlt, FaFireExtinguisher, FaArrowRight } from "react-icons/fa";
+import {
+  FaTruck,
+  FaShieldAlt,
+  FaFireExtinguisher,
+  FaArrowDown,
+} from "react-icons/fa";
 
 const ServiceCard = ({
   title,
@@ -46,28 +51,31 @@ const ServiceCard = ({
       variants={itemVariants}
       initial="hidden"
       animate={isVisible ? "visible" : "hidden"}
-      className="mb-10 last:mb-0"
+      className="mb-10 last:mb-0 bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 h-full"
     >
       <div className="flex items-center mb-3">
         <div className="bg-red-600 p-2 rounded-md text-white mr-3">
           {getIcon()}
         </div>
-        <h3 className="text-xl font-bold text-gray-800 dark:text-white">{title}</h3>
+        <h3 className="text-xl font-bold text-gray-800 dark:text-white">
+          {title}
+        </h3>
       </div>
-      
-      <p className="text-gray-600 dark:text-gray-300 pl-11 mb-4">{description}</p>
-      
+
+      <p className="text-gray-600 dark:text-gray-300 pl-11 mb-4">
+        {description}
+      </p>
+
       <motion.button
         whileHover={{ x: 5 }}
         whileTap={{ scale: 0.95 }}
         className="text-red-600 dark:text-red-500 flex items-center font-medium ml-11"
       >
         Več informacij
-        <FaArrowRight className="ml-2" />
+        <FaArrowDown className="ml-2" />
       </motion.button>
     </motion.div>
   );
 };
 
 export default ServiceCard;
-
