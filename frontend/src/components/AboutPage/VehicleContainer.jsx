@@ -4,27 +4,66 @@ import { FaTruck } from "react-icons/fa";
 import VehicleCard from "./VehicleCard";
 
 const VehicleContainer = () => {
+  // Updated vehicles data to include more complete information
   const vehicles = [
     {
       id: 1,
       title: "GV-1",
       description:
         "Gasilsko vozilo za prevoz moštva z osnovno opremo za gašenje začetnih požarov. Vozilo omogoča prevoz do 9 gasilcev in najnujnejše opreme za prvo posredovanje. Opremljeno je s potopno črpalko, cevmi, ročniki, gasilniki in osebno zaščitno opremo. Vozilo je namenjeno predvsem za hitro posredovanje in podporo drugim gasilskim enotam pri večjih intervencijah.",
-      
+      imageUrl: "/assets/placeholder.png",
+      images: ["/assets/placeholder.png", "/assets/placeholder.png"],
+      techInfo: {
+        waterCapacity: "200 litrov",
+        capacity: "9 oseb",
+        year: "2018",
+        equipment: [
+          "Potopna črpalka",
+          "Gasilni aparati",
+          "Cevi in ročniki",
+          "Osnovna oprema za gašenje",
+        ],
+      },
     },
     {
       id: 2,
       title: "GVC-1",
       description:
-        "Gasilsko vozilo s cisterno za prevoz vode in gašenje požarov v urbanem okolju. Opremljeno je z visokotlačno črpalko in 2000 litri vode za učinkovito gašenje. Vozilo ima vgrajeno visokotlačno črpalko z zmogljivostjo 10 barov, elektroagregat in razsvetljavo za nočne intervencije. Primerno je za gašenje požarov na objektih, v prometu in za oskrbo z vodo na težje dostopnih območjih.",
-      
+        "Gasilsko vozilo s cisterno za prevoz vode in gašenje požarov v urbanem okolju. Opremljeno je z visokotlačno črpalko in 2000 litri vode za učinkovito gašenje. Vozilo ima vgrajeno visokotlačno črpalko z zmogljivostjo 10 barov, elektroagregat in razsvetljavo za nočne intervencijske. Primerno je za gašenje požarov na objektih, v prometu in za oskrbo z vodo na težje dostopnih območjih.",
+      imageUrl: "/assets/placeholder.png",
+      images: ["/assets/placeholder.png", "/assets/placeholder.png"],
+      techInfo: {
+        waterCapacity: "2000 litrov",
+        capacity: "6 oseb",
+        year: "2020",
+        equipment: [
+          "Visokotlačna črpalka",
+          "Elektroagregat",
+          "Razsvetljava",
+          "Gasilni aparati",
+          "Cevi in ročniki",
+          "Oprema za tehnično reševanje",
+        ],
+      },
     },
     {
       id: 3,
-      title: "GVGP-1",
+      title: "GCGP-1",
       description:
-        "Gasilsko vozilo za gašenje gozdnih požarov s posebno opremo za težko dostopne terene. Prilagojeno je za vožnjo po zahtevnem terenu in ima zmogljivo opremo za gozdne požare. Vozilo ima pogon na vsa štiri kolesa, povečano oddaljenost od tal in dodatno zaščito podvozja. Opremljeno je s 1500 litri vode, nahrbtnimi brentami, lopati, sekirami in drugo specialno opremo za gašenje požarov v naravnem okolju.",
-     
+        "Gasilska cisterna za gašenje gozdnih požarov s posebno opremo za težko dostopne terene. Prilagojeno je za vožnjo po zahtevnem terenu in ima zmogljivo opremo za gozdne požare. Vozilo ima pogon na vsa štiri kolesa, povečano oddaljenost od tal in dodatno zaščito podvozja. Opremljeno je s 1500 litri vode, nahrbtnimi brentami, lopati, sekirami in drugo specialno opremo za gašenje požarov v naravnem okolju.",
+      imageUrl: "/assets/placeholder.png",
+      images: ["/assets/placeholder.png", "/assets/placeholder.png"],
+      techInfo: {
+        waterCapacity: "1500 litrov",
+        capacity: "3 osebe",
+        year: "2021",
+        equipment: [
+          "Visokotlačna črpalka",
+          "Nahrbtne brente",
+          "Sekirice in lopate",
+          "Specialna oprema za gozdne požare",
+        ],
+      },
     },
   ];
 
@@ -76,7 +115,7 @@ const VehicleContainer = () => {
         </p>
       </motion.div>
 
-      <div className="space-y-6">
+      <div className="space-y-10 max-w-5xl mx-auto">
         {vehicles.map((vehicle) => (
           <VehicleCard
             key={vehicle.id}
