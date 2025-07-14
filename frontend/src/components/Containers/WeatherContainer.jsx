@@ -83,7 +83,7 @@ const WeatherContainer = () => {
         </motion.span>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Current day with current conditions */}
         <WeatherCard
           data={{
@@ -95,8 +95,8 @@ const WeatherContainer = () => {
           location={weatherData.location}
         />
 
-        {/* Forecast for next 3 days */}
-        {weatherData.forecast.slice(1).map((day, index) => (
+        {/* Forecast for next 2 days */}
+        {weatherData.forecast.slice(1, 3).map((day, index) => (
           <WeatherCard key={day.date} data={day} />
         ))}
       </div>
