@@ -15,36 +15,23 @@ import {
 
 const placeholder = "/assets/placeholder.png";
 
-const VehicleCard = ({ title, description, imageUrl }) => {
+const VehicleCard = ({ title, description, imageUrl, images = [], techInfo = {} }) => {
   const [expanded, setExpanded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Sample tech info - should be replaced with actual data from props
-  const techInfo = {
-    waterCapacity: title === "GVC-1" ? "2000 litrov" : "1500 litrov",
-    capacity: title === "GV-1" ? "9 oseb" : "6 oseb",
-    equipment: [
-      "Visokotlačna črpalka",
-      "Potopna črpalka",
-      "Elektroagregat",
-      "Razsvetljava",
-      "Gasilni aparati",
-    ],
-  };
-
-  // Sample images array - should be replaced with actual data
-  const images = [placeholder, placeholder, placeholder];
+  // Use images from props or fallback to placeholder
+  const imageArray = images.length > 0 ? images : [imageUrl || placeholder];
 
   // Handle image navigation
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      prevIndex === imageArray.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const prevImage = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+      prevIndex === 0 ? imageArray.length - 1 : prevIndex - 1
     );
   };
 
@@ -107,7 +94,7 @@ const VehicleCard = ({ title, description, imageUrl }) => {
                       Kapaciteta vode
                     </p>
                     <p className="font-semibold text-gray-800 dark:text-white">
-                      {techInfo.waterCapacity}
+                      {techInfo.waterCapacity || "N/A"}
                     </p>
                   </div>
                 </div>
@@ -121,7 +108,7 @@ const VehicleCard = ({ title, description, imageUrl }) => {
                       Število oseb
                     </p>
                     <p className="font-semibold text-gray-800 dark:text-white">
-                      {techInfo.capacity}
+                      {techInfo.capacity || "N/A"}
                     </p>
                   </div>
                 </div>
@@ -135,26 +122,30 @@ const VehicleCard = ({ title, description, imageUrl }) => {
                       Letnik
                     </p>
                     <p className="font-semibold text-gray-800 dark:text-white">
-                      2021
+                      {techInfo.year || "N/A"}
                     </p>
                   </div>
                 </div>
 
-                <div className="md:col-span-3 mt-2">
-                  <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
-                    Oprema:
-                  </p>
-                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                    {techInfo.equipment.map((item, index) => (
-                      <li key={index} className="flex items-center">
-                        <span className="w-2 h-2 bg-red-600 rounded-full mr-2"></span>
-                        <span className="text-gray-700 dark:text-gray-300">
-                          {item}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                {techInfo.equipment && techInfo.equipment.length > 0 && (
+                  <div className="md:col-span-3 mt-2">
+                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
+                      Oprema:
+                    </p>
+                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                      {techInfo.equipment.map((item, index) => (
+                        item && (
+                          <li key={index} className="flex items-center">
+                            <span className="w-2 h-2 bg-red-600 rounded-full mr-2"></span>
+                            <span className="text-gray-700 dark:text-gray-300">
+                              {item}
+                            </span>
+                          </li>
+                        )
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             </motion.div>
           )}
@@ -163,13 +154,13 @@ const VehicleCard = ({ title, description, imageUrl }) => {
 
       {/* Image carousel - full width on mobile, contained on desktop */}
       <div className="relative w-full bg-gray-200 dark:bg-gray-700">
-        <div className="w-full md:w-4/5 lg:w-3/4 mx-auto">
+        <div className="w-full md:w-4/5 lg:w-2/4 mx-auto">
           <AnimatePresence mode="wait">
             <motion.img
               key={currentImageIndex}
-              src={images[currentImageIndex]}
+              src={imageArray[currentImageIndex]}
               alt={`${title} - slika ${currentImageIndex + 1}`}
-              className="w-full h-64 md:h-96 object-cover"
+              className="w-full object-contain"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
@@ -178,24 +169,24 @@ const VehicleCard = ({ title, description, imageUrl }) => {
           </AnimatePresence>
         </div>
 
-        {images.length > 1 && (
+        {imageArray.length > 1 && (
           <>
             <button
               onClick={prevImage}
-              className="absolute left-2 md:left-1/8 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 z-10"
+              className="absolute left-2 md:left-[12.5%] top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 z-10"
               aria-label="Prejšnja slika"
             >
               <FaArrowLeft />
             </button>
             <button
               onClick={nextImage}
-              className="absolute right-2 md:right-1/8 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 z-10"
+              className="absolute right-2 md:right-[12.5%] top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 z-10"
               aria-label="Naslednja slika"
             >
               <FaArrowRight />
             </button>
             <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2 z-10">
-              {images.map((_, index) => (
+              {imageArray.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentImageIndex(index)}
@@ -214,3 +205,4 @@ const VehicleCard = ({ title, description, imageUrl }) => {
 };
 
 export default VehicleCard;
+
