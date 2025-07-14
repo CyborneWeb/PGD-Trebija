@@ -14,15 +14,9 @@ const VehicleContainer = () => {
       imageUrl: "/assets/placeholder.png",
       images: ["/assets/placeholder.png", "/assets/placeholder.png"],
       techInfo: {
-        waterCapacity: "200 litrov",
-        capacity: "9 oseb",
-        year: "2018",
-        equipment: [
-          "Potopna črpalka",
-          "Gasilni aparati",
-          "Cevi in ročniki",
-          "Osnovna oprema za gašenje",
-        ],
+        capacity: "",
+        year: "",
+        equipment: ["?", "?", "?", "?"],
       },
     },
     {
@@ -33,36 +27,24 @@ const VehicleContainer = () => {
       imageUrl: "/assets/placeholder.png",
       images: ["/assets/placeholder.png", "/assets/placeholder.png"],
       techInfo: {
-        waterCapacity: "2000 litrov",
-        capacity: "6 oseb",
-        year: "2020",
-        equipment: [
-          "Visokotlačna črpalka",
-          "Elektroagregat",
-          "Razsvetljava",
-          "Gasilni aparati",
-          "Cevi in ročniki",
-          "Oprema za tehnično reševanje",
-        ],
+        waterCapacity: "",
+        capacity: "",
+        year: "",
+        equipment: ["?", "?", "?", "?"],
       },
     },
     {
       id: 3,
-      title: "GCGP-1",
+      title: "GVGP-1",
       description:
         "Gasilska cisterna za gašenje gozdnih požarov s posebno opremo za težko dostopne terene. Prilagojeno je za vožnjo po zahtevnem terenu in ima zmogljivo opremo za gozdne požare. Vozilo ima pogon na vsa štiri kolesa, povečano oddaljenost od tal in dodatno zaščito podvozja. Opremljeno je s 1500 litri vode, nahrbtnimi brentami, lopati, sekirami in drugo specialno opremo za gašenje požarov v naravnem okolju.",
       imageUrl: "/assets/placeholder.png",
       images: ["/assets/placeholder.png", "/assets/placeholder.png"],
       techInfo: {
-        waterCapacity: "1500 litrov",
-        capacity: "3 osebe",
-        year: "2021",
-        equipment: [
-          "Visokotlačna črpalka",
-          "Nahrbtne brente",
-          "Sekirice in lopate",
-          "Specialna oprema za gozdne požare",
-        ],
+        waterCapacity: "",
+        capacity: "",
+        year: "",
+        equipment: ["?", "?", "?", "?"],
       },
     },
   ];
@@ -122,6 +104,8 @@ const VehicleContainer = () => {
             title={vehicle.title}
             description={vehicle.description}
             imageUrl={vehicle.imageUrl}
+            images={vehicle.images}
+            techInfo={vehicle.techInfo}
           />
         ))}
       </div>
