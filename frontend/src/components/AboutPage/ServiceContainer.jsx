@@ -13,14 +13,18 @@ const ServiceContainer = () => {
     {
       title: "Redarstvo",
       description:
-        "Opravljamo redarsko službo na dogodkih in večjih prireditvah.",
+        "Po naročilu nudimo redarstvo na večjih prireditvah ter dogodkih, da zagotovimo varnost in red.",
       icon: "security",
+      specs:
+        "Storitev redarstva vključuje: usposobljene redarje z ustreznimi dovoljenji, organizacijo parkiranja, pomoč pri usmerjanju prometa, varovanje prireditve, vzdrževanje reda. Za več informacij in cenike nas kontaktirajte.",
     },
     {
       title: "Prevoz Vode",
       description:
-        "Zagotavljamo prevoz pitne vode gospodinjstvom in drugim uporabnikom na območjih, kjer ni javnega vodovoda ali v primeru izrednih razmer.",
+        "S pomočjo cisterne zagotavljamo prevoz večjih količin čiste vode za uporabo v različnih situacijah.",
       icon: "water",
+      specs:
+        "Kapaciteta cisterne: do 2000 litrov vode. Naše vozilo omogoča dostop tudi do težje dostopnih lokacij. Zagotavljamo hitro dostavo in varno ravnanje z vodo. Storitev je na voljo za gospodinjstva, podjetja in kmetije v naši regiji.",
     },
   ];
 
@@ -82,6 +86,7 @@ const ServiceContainer = () => {
               icon={service.icon}
               index={index}
               isVisible={isInView}
+              specs={service.specs}
             />
           ))}
         </div>

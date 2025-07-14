@@ -6,87 +6,203 @@ import {
   FaTools,
   FaChevronDown,
   FaChevronUp,
+  FaArrowLeft,
+  FaArrowRight,
+  FaWater,
+  FaUsers,
+  FaFireExtinguisher,
 } from "react-icons/fa";
+
 const placeholder = "/assets/placeholder.png";
 
-const VehicleCard = ({ title, description, imageUrl }) => {
+const VehicleCard = ({ title, description, imageUrl, images = [], techInfo = {} }) => {
   const [expanded, setExpanded] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Calculate if the description is long enough to need expansion
-  const isLongDescription = description && description.length > 100;
+  // Use images from props or fallback to placeholder
+  const imageArray = images.length > 0 ? images : [imageUrl || placeholder];
 
-  // Truncate description if needed
-  const truncatedDescription =
-    isLongDescription && !expanded
-      ? `${description.substring(0, 100)}...`
-      : description;
+  // Handle image navigation
+  const nextImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === imageArray.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? imageArray.length - 1 : prevIndex - 1
+    );
+  };
 
   return (
     <motion.div
-      className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 w-full"
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.5 }}
+      className="mb-12 overflow-hidden rounded-lg shadow-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6 }}
     >
-      <div className="flex flex-col md:flex-row">
-        {/* Image section - increased width to 1/3 to accommodate rectangular images */}
-        <div className="relative md:h-[300px]">
-          <img
-            src={imageUrl || placeholder}
-            alt={`Gasilsko vozilo ${title}`}
-            className="w-full h-48 md:h-full object-cover object-center"
-          />
-          <div className="absolute top-0 left-0 bg-red-600 text-white px-3 py-1 rounded-br-lg">
-            <FaTruck className="inline-block mr-1 react-icon" />
-            <span className="font-medium">{title}</span>
-          </div>
+      {/* Header with title */}
+      <div className="bg-red-600 text-white p-4 flex items-center justify-between">
+        <div className="flex items-center">
+          <FaTruck className="text-2xl mr-3" />
+          <h3 className="text-2xl font-bold">{title}</h3>
+        </div>
+      </div>
+
+      {/* Description section with integrated technical info */}
+      <div className="p-5 bg-gray-50 dark:bg-gray-900">
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+          {description}
+        </p>
+
+        {/* Toggle button for technical info */}
+        <motion.button
+          onClick={() => setExpanded(!expanded)}
+          className="text-red-600 dark:text-red-500 flex items-center font-medium my-2"
+          whileHover={{ x: 5 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          {expanded
+            ? "Skrij dodatne informacije"
+            : "Prikaži dodatne informacije"}
+          {expanded ? (
+            <FaChevronUp className="ml-2" />
+          ) : (
+            <FaChevronDown className="ml-2" />
+          )}
+        </motion.button>
+
+        {/* Technical specifications */}
+        <AnimatePresence>
+          {expanded && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="overflow-hidden mt-4 pt-4 border-t border-gray-200 dark:border-gray-700"
+            >
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="flex items-start space-x-3">
+                  <div className="bg-red-100 dark:bg-red-900/30 p-2 rounded-md">
+                    <FaWater className="text-red-600" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                      Kapaciteta vode
+                    </p>
+                    <p className="font-semibold text-gray-800 dark:text-white">
+                      {techInfo.waterCapacity || "N/A"}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-3">
+                  <div className="bg-red-100 dark:bg-red-900/30 p-2 rounded-md">
+                    <FaUsers className="text-red-600" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                      Število oseb
+                    </p>
+                    <p className="font-semibold text-gray-800 dark:text-white">
+                      {techInfo.capacity || "N/A"}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-3 md:col-span-1">
+                  <div className="bg-red-100 dark:bg-red-900/30 p-2 rounded-md">
+                    <FaFireExtinguisher className="text-red-600" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                      Letnik
+                    </p>
+                    <p className="font-semibold text-gray-800 dark:text-white">
+                      {techInfo.year || "N/A"}
+                    </p>
+                  </div>
+                </div>
+
+                {techInfo.equipment && techInfo.equipment.length > 0 && (
+                  <div className="md:col-span-3 mt-2">
+                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
+                      Oprema:
+                    </p>
+                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                      {techInfo.equipment.map((item, index) => (
+                        item && (
+                          <li key={index} className="flex items-center">
+                            <span className="w-2 h-2 bg-red-600 rounded-full mr-2"></span>
+                            <span className="text-gray-700 dark:text-gray-300">
+                              {item}
+                            </span>
+                          </li>
+                        )
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* Image carousel - full width on mobile, contained on desktop */}
+      <div className="relative w-full bg-gray-200 dark:bg-gray-700">
+        <div className="w-full md:w-4/5 lg:w-2/4 mx-auto">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={currentImageIndex}
+              src={imageArray[currentImageIndex]}
+              alt={`${title} - slika ${currentImageIndex + 1}`}
+              className="w-full object-contain"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
+            />
+          </AnimatePresence>
         </div>
 
-        {/* Content section - decreased width */}
-        <div className="p-4 md:w-3/3 flex flex-col justify-between">
-          <div>
-            <h3 className="text-xl font-bold text-gray-800 dark:text-white flex items-center mb-2">
-              {title}
-              <FaInfoCircle className="ml-2 text-red-500 text-sm" />
-            </h3>
-
-            <div className="text-gray-600 dark:text-gray-300 leading-relaxed">
-              <p>{truncatedDescription || "Opis vozila bo dodan kmalu."}</p>
-
-              {isLongDescription && (
-                <motion.button
-                  onClick={() => setExpanded(!expanded)}
-                  className="mt-2 text-red-600 dark:text-red-400 flex items-center text-sm font-medium"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {expanded ? "Prikaži manj" : "Prikaži več"}
-                  {expanded ? (
-                    <FaChevronUp className="ml-1 text-xs" />
-                  ) : (
-                    <FaChevronDown className="ml-1 text-xs" />
-                  )}
-                </motion.button>
-              )}
+        {imageArray.length > 1 && (
+          <>
+            <button
+              onClick={prevImage}
+              className="absolute left-2 md:left-[12.5%] top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 z-10"
+              aria-label="Prejšnja slika"
+            >
+              <FaArrowLeft />
+            </button>
+            <button
+              onClick={nextImage}
+              className="absolute right-2 md:right-[12.5%] top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 z-10"
+              aria-label="Naslednja slika"
+            >
+              <FaArrowRight />
+            </button>
+            <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2 z-10">
+              {imageArray.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentImageIndex(index)}
+                  className={`w-3 h-3 rounded-full ${
+                    currentImageIndex === index ? "bg-white" : "bg-white/50"
+                  } transition-all duration-300`}
+                  aria-label={`Pojdi na sliko ${index + 1}`}
+                />
+              ))}
             </div>
-
-            {/* Moved button back under description */}
-            <div className="mt-4 pt-3 border-t border-gray-100 dark:border-gray-700">
-              <motion.button
-                className="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-sm rounded-lg flex items-center"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <FaTools className="mr-1 text-xs" />
-                Podrobnosti
-              </motion.button>
-            </div>
-          </div>
-        </div>
+          </>
+        )}
       </div>
     </motion.div>
   );
 };
 
 export default VehicleCard;
+
