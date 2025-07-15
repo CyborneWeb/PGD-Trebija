@@ -15,7 +15,13 @@ import {
 
 const placeholder = "/assets/placeholder.png";
 
-const VehicleCard = ({ title, description, imageUrl, images = [], techInfo = {} }) => {
+const VehicleCard = ({
+  title,
+  description,
+  imageUrl,
+  images = [],
+  techInfo = {},
+}) => {
   const [expanded, setExpanded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -133,16 +139,17 @@ const VehicleCard = ({ title, description, imageUrl, images = [], techInfo = {} 
                       Oprema:
                     </p>
                     <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                      {techInfo.equipment.map((item, index) => (
-                        item && (
-                          <li key={index} className="flex items-center">
-                            <span className="w-2 h-2 bg-red-600 rounded-full mr-2"></span>
-                            <span className="text-gray-700 dark:text-gray-300">
-                              {item}
-                            </span>
-                          </li>
-                        )
-                      ))}
+                      {techInfo.equipment.map(
+                        (item, index) =>
+                          item && (
+                            <li key={index} className="flex items-center">
+                              <span className="w-2 h-2 bg-red-600 rounded-full mr-2"></span>
+                              <span className="text-gray-700 dark:text-gray-300">
+                                {item}
+                              </span>
+                            </li>
+                          )
+                      )}
                     </ul>
                   </div>
                 )}
@@ -154,13 +161,13 @@ const VehicleCard = ({ title, description, imageUrl, images = [], techInfo = {} 
 
       {/* Image carousel - full width on mobile, contained on desktop */}
       <div className="relative w-full bg-gray-200 dark:bg-gray-700">
-        <div className="w-full md:w-4/5 lg:w-2/4 mx-auto">
+        <div className="w-full md:w-4/5 lg:w-3/4 mx-auto h-[300px] sm:h-[400px] md:h-[500px] flex items-center justify-center">
           <AnimatePresence mode="wait">
             <motion.img
               key={currentImageIndex}
               src={imageArray[currentImageIndex]}
               alt={`${title} - slika ${currentImageIndex + 1}`}
-              className="w-full object-contain"
+              className="w-auto h-full object-contain"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
@@ -205,4 +212,3 @@ const VehicleCard = ({ title, description, imageUrl, images = [], techInfo = {} 
 };
 
 export default VehicleCard;
-
