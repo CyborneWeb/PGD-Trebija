@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   FaTruck,
@@ -11,6 +11,8 @@ import {
   FaWater,
   FaUsers,
   FaFireExtinguisher,
+  FaPause,
+  FaPlay,
 } from "react-icons/fa";
 
 const placeholder = "/assets/placeholder.png";
@@ -24,6 +26,8 @@ const VehicleCard = ({
 }) => {
   const [expanded, setExpanded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const autoPlayTimeoutRef = useRef(null);
 
   // Use images from props or fallback to placeholder
   const imageArray = images.length > 0 ? images : [imageUrl || placeholder];
@@ -33,13 +37,48 @@ const VehicleCard = ({
     setCurrentImageIndex((prevIndex) =>
       prevIndex === imageArray.length - 1 ? 0 : prevIndex + 1
     );
+    resetAutoPlayTimer();
   };
 
   const prevImage = () => {
     setCurrentImageIndex((prevIndex) =>
       prevIndex === 0 ? imageArray.length - 1 : prevIndex - 1
     );
+    resetAutoPlayTimer();
   };
+
+  // Toggle auto-play function
+  const toggleAutoPlay = () => {
+    setIsAutoPlaying(!isAutoPlaying);
+  };
+
+  // Reset auto-play timer function
+  const resetAutoPlayTimer = () => {
+    if (autoPlayTimeoutRef.current) {
+      clearTimeout(autoPlayTimeoutRef.current);
+    }
+
+    // Only set a new timeout if auto-play is enabled
+    if (isAutoPlaying && imageArray.length > 1) {
+      autoPlayTimeoutRef.current = setTimeout(() => {
+        setCurrentImageIndex((prevIndex) =>
+          prevIndex === imageArray.length - 1 ? 0 : prevIndex + 1
+        );
+      }, 5000);
+    }
+  };
+
+  // Set up auto-play effect
+  useEffect(() => {
+    resetAutoPlayTimer();
+
+    // Cleanup timeout on component unmount
+    return () => {
+      if (autoPlayTimeoutRef.current) {
+        clearTimeout(autoPlayTimeoutRef.current);
+      }
+    };
+  }, [currentImageIndex, isAutoPlaying, imageArray.length]);
 
   return (
     <motion.div
@@ -160,7 +199,11 @@ const VehicleCard = ({
       </div>
 
       {/* Image carousel - full width on mobile, contained on desktop */}
-      <div className="relative w-full bg-gray-200 dark:bg-gray-700">
+      <div
+        className="relative w-full bg-gray-200 dark:bg-gray-700"
+        onMouseEnter={() => setIsAutoPlaying(false)}
+        onMouseLeave={() => setIsAutoPlaying(true)}
+      >
         <div className="w-full md:w-4/5 lg:w-3/4 mx-auto h-[300px] sm:h-[400px] md:h-[500px] flex items-center justify-center">
           <AnimatePresence mode="wait">
             <motion.img
@@ -192,17 +235,31 @@ const VehicleCard = ({
             >
               <FaArrowRight />
             </button>
-            <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2 z-10">
+            <div className="absolute bottom-4 left-0 right-0 flex justify-center items-center space-x-2 z-10">
               {imageArray.map((_, index) => (
                 <button
                   key={index}
-                  onClick={() => setCurrentImageIndex(index)}
+                  onClick={() => {
+                    setCurrentImageIndex(index);
+                    resetAutoPlayTimer();
+                  }}
                   className={`w-3 h-3 rounded-full ${
                     currentImageIndex === index ? "bg-white" : "bg-white/50"
                   } transition-all duration-300`}
                   aria-label={`Pojdi na sliko ${index + 1}`}
                 />
               ))}
+
+              {/* Auto-play toggle button */}
+              <button
+                onClick={toggleAutoPlay}
+                className="ml-4 bg-black/50 hover:bg-black/70 text-white rounded-full p-1.5 flex items-center justify-center"
+                aria-label={
+                  isAutoPlaying ? "Ustavi drsenje" : "Zaženi samodejno drsenje"
+                }
+              >
+                {isAutoPlaying ? <FaPause size={10} /> : <FaPlay size={10} />}
+              </button>
             </div>
           </>
         )}
