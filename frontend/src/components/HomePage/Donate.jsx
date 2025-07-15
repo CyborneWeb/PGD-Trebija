@@ -109,14 +109,16 @@ const Donate = () => {
               },
             }}
           >
-            <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded-lg transition-colors">
-              <LuHandCoins
-                className="text-xl icon-inherit"
-                aria-hidden="true"
-              />
-              <span>Izpolni obrazec</span>
-              <LuArrowRight className="icon-inherit" aria-hidden="true" />
-            </button>
+            <a href="/assets/Obrazec.pdf" target="_blank" rel="noopener noreferrer">
+              <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded-lg transition-colors">
+                <LuHandCoins
+                  className="text-xl icon-inherit"
+                  aria-hidden="true"
+                />
+                <span>Izpolni obrazec</span>
+                <LuArrowRight className="icon-inherit" aria-hidden="true" />
+              </button>
+            </a>
           </motion.div>
 
           <motion.div
@@ -139,11 +141,13 @@ const Donate = () => {
               },
             }}
           >
-            <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white hover:bg-gray-100 text-red-600  font-medium py-3 px-6 rounded-lg transition-colors">
-              <LuFileText className="text-xl" aria-hidden="true" />
-              <span>Oddaj preko eDavki</span>
-              <LuArrowRight className="icon-inherit" aria-hidden="true" />
-            </button>
+            <a href="https://edavki.durs.si/EdavkiPortal/PersonalPortal/Pages/Login/Login.aspx?ReturnUrl=%2fEdavkiPortal%2fPersonalPortal%2f" target="_blank" rel="noopener noreferrer">
+              <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white hover:bg-gray-100 text-red-600  font-medium py-3 px-6 rounded-lg transition-colors">
+                <LuFileText className="text-xl" aria-hidden="true" />
+                <span>Oddaj preko eDavki</span>
+                <LuArrowRight className="icon-inherit" aria-hidden="true" />
+              </button>
+            </a>
           </motion.div>
         </div>
       </div>

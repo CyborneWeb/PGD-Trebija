@@ -26,6 +26,22 @@ const ServiceContainer = () => {
       specs:
         "Kapaciteta cisterne: do 2000 litrov vode. Naše vozilo omogoča dostop tudi do težje dostopnih lokacij. Zagotavljamo hitro dostavo in varno ravnanje z vodo. Storitev je na voljo za gospodinjstva, podjetja in kmetije v naši regiji.",
     },
+    {
+      title: "Izposoja miz in klopi",
+      description:
+        "Nudimo izposojo miz in klopi za vaše prireditve, piknike ali praznovanja na prostem.",
+      icon: "furniture",
+      specs:
+        "Razpolagamo s kompletom lesenih gasilskih miz in klopi, ki omogočajo sedenje za približno 50 oseb. Prevzem in vračilo poteka po dogovoru. Za več informacij o razpoložljivosti in ceni nas kontaktirajte.",
+    },
+    {
+      title: "Najem male in velike dvorane",
+      description:
+        "Za različne namene je na voljo najem male ali velike dvorane v našem gasilskem domu.",
+      icon: "building",
+      specs:
+        "Velika dvorana sprejme do 100 oseb in je primerna za večje dogodke. Mala dvorana sprejme do 30 oseb in je idealna za manjša srečanja, sestanke ali delavnice. Obe dvorani sta opremljeni z osnovno opremo in sanitarijami. Cena najema je odvisna od trajanja in namena.",
+    },
   ];
 
   // Animation variants
