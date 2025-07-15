@@ -5,6 +5,8 @@ import {
   FaShieldAlt,
   FaFireExtinguisher,
   FaArrowDown,
+  FaChair,
+  FaBuilding,
 } from "react-icons/fa";
 
 const ServiceCard = ({
@@ -23,6 +25,10 @@ const ServiceCard = ({
         return <FaShieldAlt className="text-xl" />;
       case "fire":
         return <FaFireExtinguisher className="text-xl" />;
+      case "furniture":
+        return <FaChair className="text-xl" />;
+      case "building":
+        return <FaBuilding className="text-xl" />;
       default:
         return <FaTruck className="text-xl" />;
     }
