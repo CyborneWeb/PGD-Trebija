@@ -9,7 +9,7 @@ const Gallery = () => {
       title="Galerija"
       subtitle="Oglejte si arhiv naših fotografij, ki prikazujejo dejavnosti in dogodke društva."
     />
-    
+    <GalleryCarousel></GalleryCarousel>
     
     </>
 
