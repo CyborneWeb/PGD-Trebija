@@ -1,20 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronLeft, FaChevronRight, FaClock } from "react-icons/fa";
-
+import { BASE_URL } from "../../../utils/apiPaths";
+ // ...existing code...
 
 const GalleryCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(0);
 
-  // Placeholder images array
-  const images = [
+  // --- replaced static placeholder with fetched images ---
+  const [images, setImages] = useState([
     "https://i.imgur.com/u7jC2a3.png",
-    "https://i.imgur.com/u7jC2a3.png",
-    "https://i.imgur.com/u7jC2a3.png",
-    "https://i.imgur.com/u7jC2a3.png",
-    "https://i.imgur.com/u7jC2a3.png",
-  ];
+  ]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    async function fetchGallery() {
+      setLoading(true);
+      setError(null);
+      try {
+        const res = await fetch(`${BASE_URL}/api/gallery?max_results=50`);
+        if (!res.ok) throw new Error(`Gallery request failed (${res.status})`);
+        const body = await res.json();
+        const resources = Array.isArray(body.resources) ? body.resources : [];
+        // ensure newest first
+        resources.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        const urls = resources.map(r => r.url).filter(Boolean);
+        if (!cancelled && urls.length) {
+          setImages(urls);
+          setCurrentSlide(0);
+        }
+      } catch (err) {
+        if (!cancelled) setError(err.message || "Failed to load gallery");
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+    fetchGallery();
+    return () => { cancelled = true; };
+  }, []);
+
+  // you can optionally show a loader / error UI:
+  if (loading) return <div className="h-96 flex items-center justify-center">Loading gallery…</div>;
+  if (error) return <div className="h-96 flex items-center justify-center text-red-500">Error: {error}</div>;
 
   const nextSlide = () => {
     setDirection(1);
@@ -50,7 +80,7 @@ const GalleryCarousel = () => {
   };
 
   return (
-    <div className="relative w-full h-96 md:h-[500px] lg:h-[600px] overflow-hidden bg-gray-900 rounded-lg shadow-2xl">
+    <div className="relative w-full h-40 md:h-[500px] lg:h-[600px] overflow-hidden bg-gray-900 rounded-lg shadow-2xl">
       {/* Static background that doesn't animate */}
       <div className="absolute inset-0 bg-gray-800"></div>
 
@@ -100,14 +130,7 @@ const GalleryCarousel = () => {
       >
         <FaChevronRight className="w-5 h-5" />
       </motion.button>
-      <div className="absolute top-10 left-0 right-0  flex items-center justify-center z-10 flex-col gap-2">
-        {/* A carousel title, such as "Nedavne slike"*/}
-        <div className=" bg-red-700/80 text-white px-5 py-2 rounded-lg shadow-lg text-center">
-          <div className="text-2xl font-semibold flex justify-center gap-2"><FaClock className="mt-1" />Nedavne slike</div>
-          <div>Oglej si najnovejše slike v naši galeriji</div>
-        </div>
 
-      </div>
 
       {/* Bottom controls */}
       <div className="absolute bottom-5 left-0 right-0 flex items-center justify-center gap-4 z-10">
