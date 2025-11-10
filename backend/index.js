@@ -3,7 +3,8 @@ const cors = require("cors");
 require("dotenv").config();
 
 const weatherRoutes = require("./routes/weather");
-
+const uploadRoutes = require("./routes/upload");
+const galleryRoutes = require("./routes/gallery");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -18,6 +19,8 @@ app.use(express.json());
 
 // Mount routes
 app.use("/api/weather", weatherRoutes);
+app.use("/api/upload", uploadRoutes);
+app.use("/api/gallery", galleryRoutes);
 
 app.get("/ping", (req, res) => {
   console.log("Health check ping received at:", new Date().toISOString());
